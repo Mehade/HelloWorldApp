@@ -17,8 +17,7 @@ class Item extends CI_Controller {
 
     public function search_view() {
 
-        $checkedValue = $this->input->post('radio');
-        $data['categoryList'] = $this->item_model->get_all_category();
+        $checkedValue = $this->input->post('radio');        
 
         if ($checkedValue == 'category') {
 
@@ -47,11 +46,12 @@ class Item extends CI_Controller {
                 $config['last_link'] = FALSE;
                 $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
-                $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
+                $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
+                $data['categoryList'] = $this->item_model->get_all_category();
                 $this->load->view('admin/view_search_items', $data);
             }
         }
-        if ($checkedValue == 'item') {
+        if ($checkedValue == 'itemName') {
 
             $this->item_model->item_name = $this->input->post('item_name');
             //$data['ItemViewList'] = $this->item_model->item_wise_search();
@@ -79,9 +79,11 @@ class Item extends CI_Controller {
                 $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
+                $data['categoryList'] = $this->item_model->get_all_category();
                 $this->load->view('admin/view_search_items', $data);
             }
         }
+        $data['categoryList'] = $this->item_model->get_all_category();
     }
 
     public function show() {
@@ -165,28 +167,27 @@ class Item extends CI_Controller {
         }
     }
 
-    public function search() {
-         $this->load->library('pagination');
+    public function search() {         
         $config['base_url'] = 'http://localhost/kenakata/item/search';
         $config['total_rows'] = $this->item_model->NumberOfItems();
         $config['per_page'] = 5;
         $config['num_links'] = 5;
-        $config['prev_link'] = '&laquo;';
-        $config['next_link'] = '&raquo;';
-        $config['full_tag_open'] = '<ul>';
-        $config['full_tag_close'] = ' </ul>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        $config['prev_tag_open'] = '<li>';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_tag_open'] = '<li>';
-        $config['next_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['last_tag_open'] = '<li>';
-        $config['last_tag_open'] = '</li>';
-        $config['last_link'] = FALSE;
-        $config['first_link'] = FALSE;
+//        $config['prev_link'] = '&laquo;';
+//        $config['next_link'] = '&raquo;';
+//        $config['full_tag_open'] = '<ul>';
+//        $config['full_tag_close'] = ' </ul>';
+//        $config['num_tag_open'] = '<li>';
+//        $config['num_tag_close'] = '</li>';
+//        $config['prev_tag_open'] = '<li>';
+//        $config['prev_tag_close'] = '</li>';
+//        $config['next_tag_open'] = '<li>';
+//        $config['next_tag_close'] = '</li>';
+//        $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
+//        $config['cur_tag_close'] = '</a></li>';
+//        $config['last_tag_open'] = '<li>';
+//        $config['last_tag_open'] = '</li>';
+//        $config['last_link'] = FALSE;
+//        $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
         $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
         $data['categoryList'] = $this->category_model->get_all_category();
