@@ -18,14 +18,13 @@ class Category extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['categoryList'] = $this->category_model->get_all_category();
-            $this->load->view('add_category', $data);
+            $this->load->view('admin/category_create', $data);
         } else {
             $this->category_model->category_name = $this->input->post('cat_name');
             $data['catdata'] = $this->category_model->insert_category();
             $data['categoryList'] = $this->category_model->get_all_category();
             $this->session->set_flashdata('msg', 'Data Inserted Successfully');
-            redirect('category/index', 'refresh');
-            $this->load->view('add_category', $data);
+            redirect('category/index', 'refresh');            
         }
     }
    

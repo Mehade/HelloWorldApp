@@ -1,6 +1,8 @@
 <?php
 $this->load->view('header');
 ?>
+
+
 <script>
     $(document).ready(function() {
         $(".use-address").click(function() {
@@ -32,7 +34,7 @@ $this->load->view('header');
 
         $('.deleteItem').click(function() {
         var mm = $(this).closest("tr");
-            var result = confirm('Are you sure want to clear all bookings?');
+            var result = confirm('Are you sure want to clear this item');
             if (result) {
                 
                 var cart_id = $(this).attr('id');

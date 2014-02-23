@@ -10,10 +10,10 @@ class Order_model extends CI_Model {
     public $billing_address;
     public $shipping_address;
 
-    public function insert() {
+    public function order_insert() {
+        
         $data = array(
-            "order_number" => $this->order_number,
-            "date" => $this->date,
+            "order_number" => $this->order_number,            
             "user_id" => $this->user_id,
             "delivery_status" => $this->delivery_status,
             "billing_address" => $this->billing_address,

@@ -43,8 +43,8 @@ $this->load->view('admin/header');
                     </div>
                     <div class="panel-body bio-graph-info">
                         <?php
-                        if ($this->session->flashdata('user_insert_msg')) {
-                            echo '<div class="alert alert-block alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-ok-sign"></i></button><strong>SUCCESS! </strong>' . $this->session->flashdata('user_insert_msg') . '</div>';
+                        if ($this->session->flashdata('msg')) {
+                            echo '<div class="alert alert-block alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-ok-sign"></i></button><strong>SUCCESS! </strong>' . $this->session->flashdata('msg') . '</div>';
                         }
                         ?>
                         <h1> Category Information</h1>

@@ -23,7 +23,7 @@
             <?php
             }
             else{
-                echo '<input type="hidden" name="user_id" value=""/>';
+                echo '<input type="hidden" name="user_id" value="3"/>';
             }
             ?>
             Default Billing Address<br/>

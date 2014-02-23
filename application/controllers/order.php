@@ -23,12 +23,16 @@ class Order extends CI_Controller {
         $this->order_model->user_id = $this->input->post('user_id');
         $this->order_model->billing_address = $this->input->post('different_bill_add');
         $this->order_model->shipping_address = $this->input->post('different_ship_add');
-        $inserttedId = $this->order_model>insert();
+        $inserttedId = $this->order_model->order_insert();
         
         $this->order_item_model->order_id = $inserttedId;
         $this->order_item_model->order_item_insert();
         $this->cart->destroy();
-        $this->session->set_userdata($inserttedId);
+        
+        $order_msg = array(
+            'order_number' => $order_number
+        );
+        $this->session->set_userdata($order_msg);
         redirect('order/complete','refresh');
     }
     public function complete(){
