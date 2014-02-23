@@ -15,7 +15,7 @@
             echo form_open('order/search_orders', $attributes);
             ?>
             
-            <input type="radio" name="radio" value="1" checked/> Pending
+            <input type="radio" name="radio" value="1"/> Pending
             <input type="radio" name="radio" value="2"/> Delivered
             <input type="radio" name="radio" value="0"/> Cancelled
             <input type="submit" name="searchButton" value="Search"/>

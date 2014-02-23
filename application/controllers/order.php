@@ -43,12 +43,12 @@ class Order extends CI_Controller {
 
     public function search_orders() {
         $checkedValue = $this->input->post('radio');
-        if ($checkedValue == '2') {           
+        if ($checkedValue == '2') {
 
             if ($this->order_model->numberOfOrders() > 0) {
                 $config['base_url'] = 'http://localhost/kenakata/order/search_orders';
                 $config['total_rows'] = $this->order_model->numberOfOrders();
-                $config['per_page'] = 2;
+                $config['per_page'] = 5;
                 $config['num_links'] = 5;
 //            $config['prev_link'] = '&laquo;';
 //            $config['next_link'] = '&raquo;';
@@ -68,15 +68,15 @@ class Order extends CI_Controller {
 //            $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['orderViewList'] = $this->order_model->search_delivered_orders($config['per_page'], $this->uri->segment(3));
-                $this->load->view('view_search_item', $data);
-            }            
+                $this->load->view('view_orders', $data);
+            }
         }
-        if ($checkedValue == '0') {            
+        if ($checkedValue == '0') {
 
             if ($this->order_model->numberOfOrders() > 0) {
                 $config['base_url'] = 'http://localhost/kenakata/order/search_orders';
                 $config['total_rows'] = $this->order_model->numberOfOrders();
-                $config['per_page'] = 2;
+                $config['per_page'] = 5;
                 $config['num_links'] = 5;
 //            $config['prev_link'] = '&laquo;';
 //            $config['next_link'] = '&raquo;';
@@ -96,19 +96,44 @@ class Order extends CI_Controller {
 //            $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['orderViewList'] = $this->order_model->search_cancelled_orders($config['per_page'], $this->uri->segment(3));
-                $this->load->view('view_search_item', $data);
+                $this->load->view('view_orders', $data);
             }
-            
-        }       
+        }
+        if ($checkedValue == '1') {
+
+            if ($this->order_model->numberOfOrders() > 0) {
+                $config['base_url'] = 'http://localhost/kenakata/order/search_orders';
+                $config['total_rows'] = $this->order_model->numberOfOrders();
+                $config['per_page'] = 5;
+                $config['num_links'] = 5;
+//            $config['prev_link'] = '&laquo;';
+//            $config['next_link'] = '&raquo;';
+//            $config['full_tag_open'] = '<ul>';
+//            $config['full_tag_close'] = ' </ul>';
+//            $config['num_tag_open'] = '<li>';
+//            $config['num_tag_close'] = '</li>';
+//            $config['prev_tag_open'] = '<li>';
+//            $config['prev_tag_close'] = '</li>';
+//            $config['next_tag_open'] = '<li>';
+//            $config['next_tag_close'] = '</li>';
+//            $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
+//            $config['cur_tag_close'] = '</a></li>';
+//            $config['last_tag_open'] = '<li>';
+//            $config['last_tag_open'] = '</li>';
+//            $config['last_link'] = FALSE;
+//            $config['first_link'] = FALSE;
+                $this->pagination->initialize($config);
+                $data['orderViewList'] = $this->order_model->search_pending_orders($config['per_page'], $this->uri->segment(3));
+                $this->load->view('view_orders', $data);
+            }
+        }
     }
 
-    public function search() {       
-        $checkedValue = $this->input->post('radio');        
-        $checkedValue = 1;
+    public function search() {
         $config['base_url'] = 'http://localhost/kenakata/order/search';
         $config['total_rows'] = $this->order_model->numberOfOrders();
-        $config['per_page'] = 2;
-        $config['num_links'] = 5;
+        $config['per_page'] = 4;
+        $config['num_links'] = 4;
 //        $config['prev_link'] = '&laquo;';
 //        $config['next_link'] = '&raquo;';
 //        $config['full_tag_open'] = '<ul>';
@@ -126,7 +151,7 @@ class Order extends CI_Controller {
 //        $config['last_link'] = FALSE;
 //        $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
-        $data['orderViewList'] = $this->order_model->search_pending_orders($config['per_page'], $this->uri->segment(3));        
+        $data['orderViewList'] = $this->order_model->search_all_orders($config['per_page'], $this->uri->segment(3));
         $this->load->view('view_orders', $data);
     }
 
