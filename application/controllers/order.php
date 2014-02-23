@@ -6,10 +6,11 @@ class Order extends CI_Controller {
         parent::__construct();
         $this->load->model('order_model');
         $this->load->model('order_item_model');
+        $this->load->library('pagination');
     }
 
     public function index() {
-        $this->load->view('order_confirmation_page');         
+        $this->load->view('order_confirmation_page');
     }
 
     public function orderInsert() {
@@ -24,19 +25,109 @@ class Order extends CI_Controller {
         $this->order_model->billing_address = $this->input->post('different_bill_add');
         $this->order_model->shipping_address = $this->input->post('different_ship_add');
         $inserttedId = $this->order_model->order_insert();
-        
+
         $this->order_item_model->order_id = $inserttedId;
         $this->order_item_model->order_item_insert();
         $this->cart->destroy();
-        
+
         $order_msg = array(
             'order_number' => $order_number
         );
         $this->session->set_userdata($order_msg);
-        redirect('order/complete','refresh');
+        redirect('order/complete', 'refresh');
     }
-    public function complete(){
+
+    public function complete() {
         $this->load->view('order_confirmation_page');
+    }
+
+    public function search_orders() {
+        $checkedValue = $this->input->post('radio');
+        if ($checkedValue == '2') {           
+
+            if ($this->order_model->numberOfOrders() > 0) {
+                $config['base_url'] = 'http://localhost/kenakata/order/search_orders';
+                $config['total_rows'] = $this->order_model->numberOfOrders();
+                $config['per_page'] = 2;
+                $config['num_links'] = 5;
+//            $config['prev_link'] = '&laquo;';
+//            $config['next_link'] = '&raquo;';
+//            $config['full_tag_open'] = '<ul>';
+//            $config['full_tag_close'] = ' </ul>';
+//            $config['num_tag_open'] = '<li>';
+//            $config['num_tag_close'] = '</li>';
+//            $config['prev_tag_open'] = '<li>';
+//            $config['prev_tag_close'] = '</li>';
+//            $config['next_tag_open'] = '<li>';
+//            $config['next_tag_close'] = '</li>';
+//            $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
+//            $config['cur_tag_close'] = '</a></li>';
+//            $config['last_tag_open'] = '<li>';
+//            $config['last_tag_open'] = '</li>';
+//            $config['last_link'] = FALSE;
+//            $config['first_link'] = FALSE;
+                $this->pagination->initialize($config);
+                $data['orderViewList'] = $this->order_model->search_delivered_orders($config['per_page'], $this->uri->segment(3));
+                $this->load->view('view_search_item', $data);
+            }            
+        }
+        if ($checkedValue == '0') {            
+
+            if ($this->order_model->numberOfOrders() > 0) {
+                $config['base_url'] = 'http://localhost/kenakata/order/search_orders';
+                $config['total_rows'] = $this->order_model->numberOfOrders();
+                $config['per_page'] = 2;
+                $config['num_links'] = 5;
+//            $config['prev_link'] = '&laquo;';
+//            $config['next_link'] = '&raquo;';
+//            $config['full_tag_open'] = '<ul>';
+//            $config['full_tag_close'] = ' </ul>';
+//            $config['num_tag_open'] = '<li>';
+//            $config['num_tag_close'] = '</li>';
+//            $config['prev_tag_open'] = '<li>';
+//            $config['prev_tag_close'] = '</li>';
+//            $config['next_tag_open'] = '<li>';
+//            $config['next_tag_close'] = '</li>';
+//            $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
+//            $config['cur_tag_close'] = '</a></li>';
+//            $config['last_tag_open'] = '<li>';
+//            $config['last_tag_open'] = '</li>';
+//            $config['last_link'] = FALSE;
+//            $config['first_link'] = FALSE;
+                $this->pagination->initialize($config);
+                $data['orderViewList'] = $this->order_model->search_cancelled_orders($config['per_page'], $this->uri->segment(3));
+                $this->load->view('view_search_item', $data);
+            }
+            
+        }       
+    }
+
+    public function search() {       
+        $checkedValue = $this->input->post('radio');        
+        $checkedValue = 1;
+        $config['base_url'] = 'http://localhost/kenakata/order/search';
+        $config['total_rows'] = $this->order_model->numberOfOrders();
+        $config['per_page'] = 2;
+        $config['num_links'] = 5;
+//        $config['prev_link'] = '&laquo;';
+//        $config['next_link'] = '&raquo;';
+//        $config['full_tag_open'] = '<ul>';
+//        $config['full_tag_close'] = ' </ul>';
+//        $config['num_tag_open'] = '<li>';
+//        $config['num_tag_close'] = '</li>';
+//        $config['prev_tag_open'] = '<li>';
+//        $config['prev_tag_close'] = '</li>';
+//        $config['next_tag_open'] = '<li>';
+//        $config['next_tag_close'] = '</li>';
+//        $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
+//        $config['cur_tag_close'] = '</a></li>';
+//        $config['last_tag_open'] = '<li>';
+//        $config['last_tag_open'] = '</li>';
+//        $config['last_link'] = FALSE;
+//        $config['first_link'] = FALSE;
+        $this->pagination->initialize($config);
+        $data['orderViewList'] = $this->order_model->search_pending_orders($config['per_page'], $this->uri->segment(3));        
+        $this->load->view('view_orders', $data);
     }
 
 }
