@@ -9,10 +9,7 @@
         <h3>
         Thank you for your purchase.<br/>
         We have received your order.<br/>
-        Its number : 
-        </h3>
-        <?php
-        // put your code here
-        ?>
+        Its number : <?php echo $this->session->userdata('order_number'); ?>
+        </h3>        
     </body>
 </html>

@@ -132,7 +132,7 @@ $this->load->view('header');
                     <div class="span4 offset8">
                         <div class="pull-right">
                             <a href="index.html" class="btn btn-info">Continue Shopping</a>
-                            <a href="checkout.html" class="btn btn-danger">CheckOut</a>
+                            <a href="<?php echo base_url(); ?>cart/checkoutView" class="btn btn-danger">CheckOut</a>
                         </div>
                     </div>
                 </div>

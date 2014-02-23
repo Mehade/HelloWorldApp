@@ -11,10 +11,21 @@
             'id' => 'placeOrderForm',
             'role' => 'form'
         );
-        echo form_open('order/insert', $att);
+        echo form_open('order/orderInsert', $att);
         ?>
         
         <fieldset style="width: 40%;">
+            
+            <?php if($this->session->userdata('user_id') > 0){ ?>
+            
+            <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('user_id') ?>"/>
+            
+            <?php
+            }
+            else{
+                echo '<input type="hidden" name="user_id" value=""/>';
+            }
+            ?>
             Default Billing Address<br/>
             <div>
                 <input type="text" name="default_bill_add" value="<?php echo $this->session->userdata('billing_address') ?>" readonly/>
@@ -63,8 +74,6 @@
 
                     <?php foreach ($this->cart->contents() as $items): ?>
 
-
-
                         <tr>
 
                             <td><?php echo $items['name']; ?></td>
@@ -87,7 +96,7 @@
                 </tbody>
             </table>
             
-            <input type="submit" name="submit" class="btn btn-info" value="Place Order"/>
+            <a herf="" ><input type="submit" name="submit" class="btn btn-info" value="Place Order"/></a>
             
         </fieldset>
         
