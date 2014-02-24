@@ -3,6 +3,17 @@ $this->load->view('admin/header');
 ?>
 
 
+<script src="<?php echo base_url() ?>main/js/jquery-1.8.3.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#munna tbody tr").click(function() {
+            var id = $(this).attr('id');
+            alert(id);
+        });
+    });
+</script>
+
+
 <section id="main-content">
     <section class="wrapper">
         <?php
@@ -52,7 +63,7 @@ $this->load->view('admin/header');
                     <header class="panel-heading">
                         Show All Order
                     </header>
-                    <table class="table table-striped table-advance table-hover">
+                    <table class="table table-striped table-advance table-hover" id="munna">
                         <thead>
                             <tr>
                                 <th><i class="icon-bullhorn"></i> Order Number</th>
@@ -66,15 +77,15 @@ $this->load->view('admin/header');
                             <?php
                             foreach ($orderViewList as $aList) {
                                 ?>
-                                <tr id="<?php echo $aList->id ?>">
-                                    <td><?php echo $aList->number; ?></td>
-                                    <td><?php echo $aList->qty; ?></td>
-                                    <td><?php echo $aList->date; ?></td>
-                                    <td><?php echo $aList->user; ?></td>
-                                    <td><?php echo $aList->address; ?></td>
+                                <tr id="<?php echo $aList->id ?>">                               
+                                <td><?php echo $aList->number; ?></td>
+                                <td><?php echo $aList->qty; ?></td>
+                                <td><?php echo $aList->date; ?></td>
+                                <td><?php echo $aList->user; ?></td>
+                                <td><?php echo $aList->address; ?></td>                               
                                 </tr>
 
-                            <?php } ?>
+                        <?php } ?>
                         </tbody>
                     </table>
 
