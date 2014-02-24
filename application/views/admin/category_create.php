@@ -75,7 +75,7 @@ $this->load->view('admin/header');
 
 
         <div class="row">
-            <div class="col-lg-2"></div>
+              <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <section class="panel-primary">
                     <header class="panel-heading">

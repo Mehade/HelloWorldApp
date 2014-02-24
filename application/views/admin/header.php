@@ -32,6 +32,8 @@
           <script src="<?php echo base_url(); ?>public/js/html5shiv.js"></script>
           <script src="<?php echo base_url(); ?>public/js/respond.min.js"></script>
         <![endif]-->
+        
+
 
         <script src="<?php echo base_url(); ?>public/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>public/js/jquery-1.8.3.min.js"></script>
