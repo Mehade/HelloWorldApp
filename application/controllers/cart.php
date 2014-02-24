@@ -15,7 +15,7 @@ class Cart extends CI_Controller {
     }
 
     public function checkoutView() {
-        $this->load->view('check_out_view');
+        $this->load->view('checkout');
     }
     
     public function mehadi(){

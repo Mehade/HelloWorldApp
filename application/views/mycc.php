@@ -110,7 +110,7 @@ $this->load->view('header');
                                 <!-- Unit price -->
                                 <td class="unit"> <?php echo $items['price']; ?></td>
                                 <!-- Total cost -->
-                                <td class="grand">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
+                                <td class="grand"><?php echo $this->cart->format_number($items['subtotal']); ?> TK</td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
@@ -119,7 +119,7 @@ $this->load->view('header');
                             <th></th>
                             <th></th>
                             <th>Total</th>
-                            <th id="fulltotal">$<?php echo $this->cart->format_number($this->cart->total()); ?></th>
+                            <th id="fulltotal"><?php echo $this->cart->format_number($this->cart->total()); ?> TK</th>
                         </tr>
                     </tbody>
                 </table>
@@ -132,9 +132,8 @@ $this->load->view('header');
                 <!-- Button s-->
                 <div class="row">
                     <div class="span4 offset8">
-                        <div class="pull-right">
-                            <a href="index.html" class="btn btn-info">Continue Shopping</a>
-                            <a href="<?php echo base_url(); ?>cart/checkoutView" class="btn btn-danger">CheckOut</a>
+                        <div class="pull-right">                            
+                            <a href="<?php echo base_url(); ?>cart/checkoutView" class="btn btn-primary">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>

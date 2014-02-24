@@ -35,82 +35,6 @@
 
     <body>
 
-        <!-- Shopping cart Modal -->
-        <div class="modal fade" id="shoppingcart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Shopping Cart</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <!-- Items table -->
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Item Name</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total Price</th>
-                                    <th>Option</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php $i = 1; ?>
-
-                                <?php foreach ($this->cart->contents() as $items): ?>
-
-                                    <?php echo form_hidden($i . '[rowid]', $items['rowid']); ?>
-
-                                    <tr>
-                                        
-                                        <td>
-                                                                               <?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
-<img src="<?php echo base_url(); ?>upload/<?php echo $option_value; ?>"/>
-                                                        
-
-                                                    <?php endforeach; ?>
-                                            
-                                        <td>
-                                            
-                                            <?php echo $items['name']; ?>
-
-                                            <?php if ($this->cart->has_options($items['rowid']) == TRUE): ?>
-
-                                                <p>
-                 
-                                                </p>
-
-                                            <?php endif; ?>
-                                        </td>
-
-                                        <td><?php echo form_input(array('name' => $i . '[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
-
-                                        <td><?php echo $this->cart->format_number($items['price']); ?></td>
-                                        <td>$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
-                                        <td><a href="#"></a></td>
-                                    </tr>
-
-                                    <?php $i++; ?>
-
-                                <?php endforeach; ?>
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-                        <button type="button" class="btn btn-info">Checkout</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-
 
         <!-- Logo & Navigation starts -->
 
@@ -120,7 +44,7 @@
                     <div class="col-md-4 col-sm-5">
                         <!-- Logo -->
                         <div class="logo">
-                            <h1><a href="#">KENAKATA.com</a></h1>
+                            <h1><a href="<?php echo base_url(); ?>index">KENAKATA.com</a></h1>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2">                        
