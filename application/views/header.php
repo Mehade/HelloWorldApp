@@ -44,7 +44,7 @@
                     <div class="col-md-4 col-sm-5">
                         <!-- Logo -->
                         <div class="logo">
-                            <h1><a href="<?php echo base_url(); ?>index">KENAKATA.com</a></h1>
+                            <h1><a href="<?php echo base_url(); ?>index/">KENAKATA.com</a></h1>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2">                        
@@ -60,14 +60,14 @@
                                     <?php
                                     if ($this->session->userdata('user_name') != '') {
                                         echo '<li><a href="'. base_url() . 'user/my_account_info"><i class="icon-lock" style="padding-right: 3px;"></i>' . $this->session->userdata('user_name') . '</a></li>';
-                                        echo '<li><a data-toggle="modal" href="#shoppingcart" rel="ddsubmenu1"><i class="icon-shopping-cart" style="padding-right: 3px;"></i>My Cart</a></li>';
+                                        echo '<li><a data-toggle="modal" href="'. base_url() .'cart/add_to_cart" rel="ddsubmenu1"><i class="icon-shopping-cart" style="padding-right: 3px;"></i>My Cart</a></li>';
                                         echo '<li><a href="#" rel="ddsubmenu1"><i class="icon-eye-open" style="padding-right: 3px;"></i>Check Out</a></li>';
                                         echo '<li><a data-toggle="modal" href="' . base_url() . 'user/user_logout" rel="ddsubmenu1"><i class="icon-user" style="padding-right: 3px;"></i>Logout</a></li>';
                                     } else {
                                         ?>
                                         <li><a href="<?php echo base_url(); ?>user/"><i class="icon-lock" style="padding-right: 3px;"></i>My Account</a></li>                            
                                         <li><a data-toggle="modal" href="<?php echo base_url() ?>cart/add_to_cart" rel="ddsubmenu1"><i class="icon-shopping-cart" style="padding-right: 3px;"></i>My Cart</a></li>
-                                        <li><a href="#" rel="ddsubmenu1"><i class="icon-eye-open" style="padding-right: 3px;"></i>Check Out</a></li>
+                                        <li><a href="<?php echo base_url(); ?>cart/checkoutView" rel="ddsubmenu1"><i class="icon-eye-open" style="padding-right: 3px;"></i>Check Out</a></li>
                                         <li><a data-toggle="modal" href="<?php echo base_url(); ?>user/" rel="ddsubmenu1"><i class="icon-user" style="padding-right: 3px;"></i>Login</a></li>                                                           
                                         <?php
                                     }
