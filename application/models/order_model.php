@@ -71,5 +71,33 @@ class Order_model extends CI_Model {
         $query = $this->db->get('orders');
         return count($query->result());
     }
+    
+    public function getOrders() {
+        $this->db->select('orders.id, orders.order_number, orders.date, user.user_id, orders.billing_address, orders.shipping_address, orders.delivery_status, count(order_item.item_qty) as qty');
+        $this->db->from('orders');
+        $this->db->join('user', 'orders.user_id = user.user_id', 'LEFT');
+        $this->db->join('order_item', 'orders.id = order_item.order_id', 'INNER');
+        $this->db->where('orders.id', $this->id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+    
+    public function getOrder_items() {
+        $this->db->select('orders.id  as orderId, item.item_name as name, order_item.item_qty as quantity, order_item.item_unit_price as price, (order_item.item_unit_price * order_item.item_qty) as subtotal');
+        $this->db->from('order_item');
+        $this->db->join('item', 'order_item.item_id = item.item_id', 'INNER');
+        $this->db->join('orders', 'order_item.order_id = orders.id', 'INNER');
+        $this->db->where('order_item.order_id', $this->id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    public function updateStatus() {
+        $data = array(
+            'delivery_status' => $this->delivery_status
+        );
+        $this->db->where('id', $this->id);
+        $this->db->update('orders', $data);
+    }
        
 }

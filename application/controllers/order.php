@@ -154,5 +154,19 @@ class Order extends CI_Controller {
         $data['orderViewList'] = $this->order_model->search_all_orders($config['per_page'], $this->uri->segment(3));
         $this->load->view('admin/view_orders_details', $data);
     }
+    
+    public function getdataFromOrder() {
+        $this->order_model->id = $this->input->post('id');
+        $msg = $this->order_model->getOrders();
+        $info = $this->order_model->getOrder_items();
+        $result = array("msg"=>$msg,"info"=>$info);
+        echo json_encode($result);
+    }
+    
+    public function updateStatus(){
+        $this->order_model->id = $this->input->post('orderId');
+        $this->order_model->delivery_status = $this->input->post('orderChangeStatus');
+        $this->order_model->updateStatus();
+    }
 
 }
