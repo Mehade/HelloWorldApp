@@ -166,7 +166,11 @@ class Order extends CI_Controller {
     public function updateStatus(){
         $this->order_model->id = $this->input->post('orderId');
         $this->order_model->delivery_status = $this->input->post('orderChangeStatus');
-        $this->order_model->updateStatus();
+       $this->order_model->updateStatus();
+       $msg = array("msg"=>"Update Successfully");
+        echo json_encode($msg);
     }
+    
+    
 
 }

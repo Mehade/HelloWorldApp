@@ -15,6 +15,7 @@ $this->load->view('admin/header');
                         data: "id=" + id,
                         success: function(data)
                         {
+                            $("#orderId").val(data.msg.id);
                             $("#orderNumber").val(data.msg.order_number);
                             $("#itemQty").val(data.msg.qty);
                             $("#orderDate").val(data.msg.date);
@@ -25,8 +26,8 @@ $this->load->view('admin/header');
 
 
 
-                            var mySelect = $('#munna tbody');
-                            $('#munna tbody tr').remove();                            
+                            var mySelect = $('#popUpform tbody');
+                            $('#popUpform tbody tr').remove();
                             $.each(data.info, function(v, k) {
                                 mySelect.append("<tr><td>" + k.name + "</td><td>" + k.price + "</td><td>" + k.quantity + "</td><td>" + k.subtotal + "</td></tr>");
                             });
@@ -36,6 +37,24 @@ $this->load->view('admin/header');
                     });
             $("#myModal").modal('show');
         });
+        $("#updateProfile").submit(function(e) {
+
+            e.preventDefault();
+            $.ajax(
+                    {
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>order/updateStatus",
+                        data: $("#updateProfile").serialize(),
+                        success: function(data)
+                        {
+                            alert(data.msg);
+                            $("#myModal").modal('hide');
+
+                        }, dataType: 'json'
+                    });
+
+        });
+
     });
 </script>
 
@@ -134,7 +153,7 @@ $this->load->view('admin/header');
 
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <table class="table table-striped table-advance table-hover" id="munna">
+                                            <table class="table table-striped table-advance table-hover" id="popUpform">
                                                 <thead>
                                                     <tr>
                                                         <th><i class="icon-bookmark"></i> Item Name</th>
