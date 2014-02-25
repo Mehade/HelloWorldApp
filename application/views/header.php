@@ -30,7 +30,7 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="<?php echo base_url(); ?>main/img/cart.png">
- <script src="<?php echo base_url(); ?>main/js/jquery.js"></script>
+        <script src="<?php echo base_url(); ?>main/js/jquery.js"></script>
     </head>
 
     <body>
@@ -48,32 +48,23 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2">                        
-                        <!-- Dropdown NavBar -->
-                        <div class="navis"></div>                  
+                        <!-- Dropdown NavBar -->                                         
                     </div>
 
+
                     <div class="col-md-6 col-sm-5">
-                        <!-- Navigation menu -->
-                        <div class="navi">
-                            <div id="ddtopmenubar" class="mattblackmenu">
-                                <ul>
-                                    <?php
-                                    if ($this->session->userdata('user_name') != '') {
-                                        echo '<li><a href="'. base_url() . 'user/my_account_info"><i class="icon-lock" style="padding-right: 3px;"></i>' . $this->session->userdata('user_name') . '</a></li>';
-                                        echo '<li><a data-toggle="modal" href="'. base_url() .'cart/add_to_cart" rel="ddsubmenu1"><i class="icon-shopping-cart" style="padding-right: 3px;"></i>My Cart</a></li>';
-                                        echo '<li><a href="#" rel="ddsubmenu1"><i class="icon-eye-open" style="padding-right: 3px;"></i>Check Out</a></li>';
-                                        echo '<li><a data-toggle="modal" href="' . base_url() . 'user/user_logout" rel="ddsubmenu1"><i class="icon-user" style="padding-right: 3px;"></i>Logout</a></li>';
-                                    } else {
-                                        ?>
-                                        <li><a href="<?php echo base_url(); ?>user/"><i class="icon-lock" style="padding-right: 3px;"></i>My Account</a></li>                            
-                                        <li><a data-toggle="modal" href="<?php echo base_url() ?>cart/add_to_cart" rel="ddsubmenu1"><i class="icon-shopping-cart" style="padding-right: 3px;"></i>My Cart</a></li>
-                                        <li><a href="<?php echo base_url(); ?>cart/checkoutView" rel="ddsubmenu1"><i class="icon-eye-open" style="padding-right: 3px;"></i>Check Out</a></li>
-                                        <li><a data-toggle="modal" href="<?php echo base_url(); ?>user/" rel="ddsubmenu1"><i class="icon-user" style="padding-right: 3px;"></i>Login</a></li>                                                           
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
+                        <div class="kart-links">
+                            <a href="<?php echo base_url(); ?>user/">Login/Signup</a> 
+
+                            <a href="<?php echo base_url(); ?>cart/add_to_cart"><i class="icon-shopping-cart"></i> 
+                                <?php
+                                if ($this->cart->contents()) {
+                                    echo $this->cart->total_items() . ' Items -TK- ' . $this->cart->format_number($this->cart->total());
+                                } else {
+                                    echo '0 Items - TK 0.00';
+                                }
+                                ?>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -118,14 +109,23 @@
 
                         <!--Search Area Start-->
 
-                        <form class="form-inline" role="form">
-                            <div class="form-group">                        
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="search" name="search" placeholder="Search here">
-                                </div>                                                                            
-                            </div>                         
-                            <button type="submit" class="btn btn-primary" style="margin-top: -25px;"><i class="icon-search" style="padding-right: 5px;"></i>Item Search</button>
-                        </form>
+                        <?php
+                        $attribute = array(
+                            'id' => 'searchAllItems',
+                            'class' => 'form-inline',
+                            'role' => 'form'
+                        );
+                        echo form_open('cart/add_to_cart', $attribute)
+                        ?>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Search here">
+                           
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 0px;margin-left: 5px;"><i class="icon-search"></i> Item Search</button>
+
+                        <?php
+                        echo form_close();
+                        ?>
 
                         <!--Search Area End-->
                     </div>

@@ -6,10 +6,19 @@ $this->load->view('header');
 <!-- Page title -->
 <div class="page-title">
     <div class="container">
-        <h2><i class="icon-desktop color"></i> <?php echo $catName->category_name; ?></h2>
-        <hr />
+        <div class="row">
+            
+            <div class="col-md-6 tab-right">
+                <h2><i class="icon-desktop color"></i> <?php echo $catName->category_name; ?></h2>
+            </div>
+            <div class="col-md-6 text-right">
+                    <?php echo $this->pagination->create_links(); ?> 
+            </div>
+
+        </div>
     </div>
 </div>
+
 <!-- Page title -->
 
 
@@ -60,6 +69,7 @@ $this->load->view('header');
                                     <hr />
                                     <!-- Price -->
                                     <div class="item-price pull-left" style="width: 100px;"><?php echo $aitem->item_unit_price . " TK"; ?></div>
+                                    <input type="hidden" name="item_price" value="<?php echo $aitem->item_unit_price; ?>"/>
                                     <!-- Add to cart -->                                    
                                     <div class="pull-right"><input type="submit" class="btn btn-danger btn-sm" value="Add to Cart"/></div>
                                     <div class="clearfix"></div>
@@ -82,7 +92,7 @@ $this->load->view('header');
                     <div class="col-md-12 text-center">
                         <!-- Pagination -->
                         <ul class="pagination">
-                            <?php echo $this->pagination->create_links();  ?>
+                            <?php echo $this->pagination->create_links(); ?>
                         </ul> 
                     </div>
                 </div>
@@ -98,7 +108,7 @@ $this->load->view('header');
                         <?php
                         foreach ($categoryList as $aCategory) {
                             echo '<li>';
-                            echo '<a href=' . base_url() . "item/show/" . $aCategory->category_id . '/>';
+                            echo '<a href=' . base_url() . "category/show/" . $aCategory->category_id . '/>';
                             echo '&nbsp;' . $aCategory->category_name;
                             echo '</a>';
                             echo '</li>';
@@ -175,6 +185,7 @@ $this->load->view('header');
 
         <div class="sep-bor"></div>
     </div>
+</div>
 </div>
 
 

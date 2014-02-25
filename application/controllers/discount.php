@@ -41,5 +41,5 @@ class Discount extends CI_Controller {
         redirect('discount/index', 'refresh');
         
     }
-
+    
 }

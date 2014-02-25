@@ -18,7 +18,7 @@ class Order_model extends CI_Model {
             "billing_address" => $this->billing_address,
             "shipping_address" => $this->shipping_address
         );  
-        $this->db->insert('order', $data); 
+        $this->db->insert('orders', $data); 
         return $this->db->insert_id();
     }
     

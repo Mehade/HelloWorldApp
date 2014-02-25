@@ -22,17 +22,17 @@ class Item_model extends CI_Model {
     }
 
     public function updateQty() {
-        $this->db->where('item_id',  $this->item_id);
-        $this->db->set('item_present_qty', 'item_present_qty+'.$this->item_present_qty, FALSE);
+        $this->db->where('item_id', $this->item_id);
+        $this->db->set('item_present_qty', 'item_present_qty+' . $this->item_present_qty, FALSE);
         $this->db->update('item');
     }
 
     public function updatePrice() {
-        $this->db->where('item_id',  $this->item_id);
+        $this->db->where('item_id', $this->item_id);
         $this->db->set('item_unit_price', $this->item_unit_price, FALSE);
         $this->db->update('item');
     }
-    
+
     public function get_all_category() {
         $query = $this->db->get('category');
         return $query->result();
@@ -70,6 +70,7 @@ class Item_model extends CI_Model {
     }
 
     public function NumberOfItems() {
+        $this->db->where('category_id', $this->category_id);
         $query = $this->db->get('item');
         return count($query->result());
     }
@@ -98,7 +99,7 @@ class Item_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     public function get_all_item() {
         $this->db->select('*');
         $this->db->from('item');
@@ -106,27 +107,29 @@ class Item_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     public function getCategoryForItem() {
         $this->db->where('category_id', $this->category_id);
         $query = $this->db->get('item');
         return $query->result_array();
     }
-    
+
     public function getCategorywiseItem() {
         $this->db->select('item_id, item_unit_price as price');
         $this->db->from('item');
         $this->db->where('item_id', $this->item_id);
         $query = $this->db->get();
         return $query->row_array();
-    }  
+    }
+
     public function getItemnameForDiscount() {
         $this->db->select('item_id as id, item_name as name, item_unit_price as price');
         $this->db->from('item');
         $this->db->where('item_id', $this->item_id);
         $query = $this->db->get();
         return $query->row_array();
-    }  
+    }
+
     public function getCategoryWiseProduct($per_page, $limit) {
         $this->db->select('*');
         $this->db->from('item');
@@ -135,10 +138,23 @@ class Item_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     public function getItemDetails() {
         $this->db->where('item_id', $this->item_id);
         $query = $this->db->get('item');
         return $query->row();
     }
+
+    public function hotsells() {
+
+        $this->db->select('item.item_id,item.item_name,count(order_item.item_id)as mcount,item.item_name,item.item_description,item.item_unit_price,item.item_image');
+        $this->db->from('item');
+        $this->db->join('order_item', 'item.item_id = order_item.item_id','left');
+        $this->db->group_by("item.item_id"); 
+        $this->db->order_by('count(order_item.item_id)',"desc");
+        $this->db->limit(10);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

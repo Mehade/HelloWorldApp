@@ -15,3 +15,14 @@ if (!function_exists('kanakata_category_list')) {
     }
 
 }
+
+if (!function_exists('kanakata_discount_list')) {
+
+    function kanakata_discount_list() {
+        $CI = & get_instance();
+        $CI->load->model('discount_model');        
+        $membres = $CI->discount_model->get_discount_items();
+        return $membres;
+    }
+
+}

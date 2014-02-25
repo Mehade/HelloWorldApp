@@ -85,40 +85,7 @@ class Item extends CI_Controller {
         $categoryList = kanakata_category_list();
     }
 
-    public function show() {
-        $categoryList = kanakata_category_list();
-        $catId = $this->uri->segment(3);
-        $this->item_model->category_id = $catId;
-        $this->category_model->category_id = $catId;
-        $data['catName'] = $this->category_model->get_category_name();       
-
-        $config['base_url'] = 'http://localhost/kenakata/item/show';
-        $config['total_rows'] = $this->item_model->NumberOfItems();
-        $config['per_page'] = 9;
-        $config['num_links'] = 5;
-        $config['prev_link'] = '&laquo;';
-        $config['next_link'] = '&raquo;';
-        $config['full_tag_open'] = '<ul class="pagination">';
-        $config['full_tag_close'] = ' </ul>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        $config['prev_tag_open'] = '<li>';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_tag_open'] = '<li>';
-        $config['next_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a href="">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['last_tag_open'] = '<li>';
-        $config['last_tag_open'] = '</li>';
-        $config['last_link'] = FALSE;
-        $config['first_link'] = FALSE;
-        $this->pagination->initialize($config);
-        $data['itemlist'] = $this->item_model->getCategoryWiseProduct($config['per_page'], $this->uri->segment(3));
-
-
-        //$data['itemlist'] = $this->item_model->getCategoryWiseProduct();
-        $this->load->view('show_items', $data);
-    }
+    
 
     public function detailsOfAnItem() {
         $itemId = $this->uri->segment(3);
