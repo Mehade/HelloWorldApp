@@ -92,7 +92,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-book"></i>
+                                <i class="icon-user"></i>
                                 <span>Show All Admin</span>
                                 <span class="arrow"></span>
                             </a>
@@ -102,7 +102,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-book"></i>
+                                <i class="icon-adn"></i>
                                 <span>Category</span>
                                 <span class="arrow"></span>
                             </a>
@@ -112,18 +112,19 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-cogs"></i>
+                                <i class="icon-list"></i>
                                 <span>Item</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
                                 <li><a class="" href="<?php echo base_url(); ?>item/">Add New Items</a></li>
-                                <li><a class="" href="<?php echo base_url(); ?>item/search">View/Search Items</a></li>                          
+                                <li><a class="" href="<?php echo base_url(); ?>item/search">View/Search Items</a></li>
+                                <li><a class="" href="<?php echo base_url(); ?>item/update_price_view">Update Items Price</a></li>                          
                             </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-tasks"></i>
+                                <i class="icon-th"></i>
                                 <span>Stock</span>
                                 <span class="arrow"></span>
                             </a>
@@ -134,41 +135,23 @@
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon-th"></i>
-                                <span>Data Tables</span>
+                                <span>Order</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="basic_table.html">Basic Table</a></li>
-                                <li><a class="" href="dynamic_table.html">Dynamic Table</a></li>
+                                <li><a class="" href="<?php echo base_url(); ?>order/search">View Orders</a></li>                                
                             </ul>
-                        </li>
-                        <li>
-                            <a class="" href="inbox.html">
-                                <i class="icon-envelope"></i>
-                                <span>Mail </span>
-                                <span class="label label-danger pull-right mail-info">2</span>
-                            </a>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-glass"></i>
-                                <span>Extra</span>
+                                <i class="icon-th"></i>
+                                <span>Discount</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="blank.html">Blank Page</a></li>
-                                <li><a class="" href="profile.html">Profile</a></li>
-                                <li><a class="" href="invoice.html">Invoice</a></li>
-                                <li><a class="" href="404.html">404 Error</a></li>
-                                <li><a class="" href="500.html">500 Error</a></li>
+                                <li><a class="" href="<?php echo base_url(); ?>discount/">Add Discounts</a></li>                                
                             </ul>
-                        </li>
-                        <li>
-                            <a class="" href="login.html">
-                                <i class="icon-user"></i>
-                                <span>Login Page</span>
-                            </a>
-                        </li>
+                        </li>                                              
                     </ul>
                     <!-- sidebar menu end-->
                 </div>

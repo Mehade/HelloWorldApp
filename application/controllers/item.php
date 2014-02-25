@@ -213,7 +213,7 @@ class Item extends CI_Controller {
     public function update_price_view() {
         $categoryList = kanakata_category_list();
         $data['itemList'] = $this->item_model->get_all_item();
-        $this->load->view('update_price_view', $data);
+        $this->load->view('admin/update_price', $data);
     }
 
     public function update_price() {

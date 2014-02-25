@@ -135,13 +135,7 @@ $this->load->view('admin/header');
                             ?>
                         </tbody>
                     </table>
-                </section>
-
-                <div class="text-center">
-                    <div class="pagination pagination-lg">
-                        <?php //echo $this->pagination->create_links();   ?>
-                    </div>
-                </div>
+                </section>                
 
             </div>
             <div class="col-lg-1"></div>
