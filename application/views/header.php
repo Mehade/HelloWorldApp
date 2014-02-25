@@ -44,7 +44,7 @@
                     <div class="col-md-4 col-sm-5">
                         <!-- Logo -->
                         <div class="logo">
-                            <h1><a href="<?php echo base_url(); ?>index/">KENAKATA.com</a></h1>
+                            <h1><a href="<?php echo base_url(); ?>">KENAKATA.com</a></h1>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2">                        

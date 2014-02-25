@@ -38,7 +38,7 @@ class Order extends CI_Controller {
     }
 
     public function complete() {
-        $this->load->view('order_confirmation_page');
+        $this->load->view('confirmation');
     }
 
     public function search_orders() {

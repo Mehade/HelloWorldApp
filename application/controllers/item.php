@@ -11,7 +11,7 @@ class Item extends CI_Controller {
     }
 
     public function index() {
-        $data['categoryList'] = $this->item_model->get_all_category();
+       
         $this->load->view('admin/items_create', $data);
     }
 
@@ -79,7 +79,6 @@ class Item extends CI_Controller {
                 $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-                $data['categoryList'] = $this->item_model->get_all_category();
                 $this->load->view('admin/view_search_items', $data);
             }
         }
@@ -87,11 +86,15 @@ class Item extends CI_Controller {
     }
 
     public function show() {
-        $data['categoryList'] = $this->item_model->get_all_category();
+        
         $catId = $this->uri->segment(3);
         $this->item_model->category_id = $catId;
+        
+        $this->category_model->category_id = $catId;
+        $data['catName'] = $this->category_model->get_category_name();
+        
         $data['itemlist'] = $this->item_model->getCategoryWiseProduct();
-        $this->load->view('showitems', $data);
+        $this->load->view('show_items', $data);                
     }
 
     public function detailsOfAnItem() {
@@ -109,7 +112,7 @@ class Item extends CI_Controller {
         //$this->form_validation->set_rules('item_pic', 'Item Image', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['categoryList'] = $this->item_model->get_all_category();
+            
             $this->load->view('view_items', $data);
         } else {
 
@@ -124,7 +127,7 @@ class Item extends CI_Controller {
 
             if (!$this->upload->do_upload()) {
                 $data['error'] = $this->upload->display_errors();
-                $data['categoryList'] = $this->item_model->get_all_category();
+               
                 $this->load->view('view_items', $data);
             } else {
                 $data = $this->upload->data();
@@ -190,7 +193,7 @@ class Item extends CI_Controller {
         $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
         $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-        $data['categoryList'] = $this->category_model->get_all_category();
+        
         $this->load->view('admin/view_search_items', $data);
     }
 
@@ -297,7 +300,7 @@ class Item extends CI_Controller {
     }
 
     public function update_price_view() {
-        $data['categoryList'] = $this->category_model->get_all_category();
+        
         $data['itemList'] = $this->item_model->get_all_item();
         $this->load->view('update_price_view', $data);
     }
