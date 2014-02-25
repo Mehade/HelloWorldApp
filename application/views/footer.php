@@ -24,37 +24,57 @@
 
                                 <?php
                                 $dis_items = kanakata_discount_list();
+                                foreach ($dis_items as $aDiscount) {                                    
+                                    ?>
+
+                                    <li>  
+
+                                        
+
+                                        <a href="#"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
+                                        <div class="carousel_caption">
+                                            <h5><a href="#"><?php echo $aDiscount->item_name; ?></a></h5>
+                                            <p>Something about the product goes here. Not More than 2 lines.</p>
+                                            <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> <?php echo $aDiscount->disprice . " TK"; ?></a>
+                                            <input type="hidden" name="item_price" value="<?php echo $aDiscount->disprice; ?>"/>
+                                        </div>
+                                    </li>
+                                <?php                                    
+                                }
                                 ?>
 
                                 <li>
-                                    <?php
-                                    foreach ($dis_items as $aDiscount) {
-                                        $attribute = array(
-                                            'id' => 'addCartForm',
-                                            'role' => 'form'
-                                        );
-                                        echo form_open('cart/add_to_cart', $attribute)
-                                        ?>
-                                        <input type="hidden" name="item_id" value="<?php echo $aDiscount->item_id; ?>"/>
-                                        <input type="hidden" name="quantity" value="1"/>
-                                        <input type="hidden" name="item_name" value="<?php echo $aDiscount->item_name; ?>"/>
-                                        <input type="hidden" name="item_image" value="<?php echo $aDiscount->item_image; ?>"/>
-
-                                        <a href="<?php echo base_url() ?>item/detailsOfAnItem/<?php echo $aDiscount->item_id; ?>"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
-                                        <div class="carousel_caption">
-                                            <h5><a href="<?php echo base_url() ?>item/detailsOfAnItem" name="item_name"><?php echo $aDiscount->item_name; ?></a></h5>
-                                            <p>Something about the product goes here. Not More than 2 lines.</p>
-                                            <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i><?php echo $aDiscount->disprice . " TK"; ?></a>
-                                            <input type="hidden" name="item_price" value="<?php echo $aDiscount->disprice; ?>"/>
-                                        </div>
-                                        <?php
-                                        echo form_close();
-                                        ?>
-                                    </li>
-                                <?php } ?>
-
-
-
+                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
+                                    <div class="carousel_caption">
+                                        <h5><a href="#">Praesent estsum etium</a></h5>
+                                        <p>Something about the product goes here. Not More than 2 lines.</p>
+                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
+                                    <div class="carousel_caption">
+                                        <h5><a href="#">Praesent estsum etium</a></h5>
+                                        <p>Something about the product goes here. Not More than 2 lines.</p>
+                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
+                                    <div class="carousel_caption">
+                                        <h5><a href="#">Praesent estsum etium</a></h5>
+                                        <p>Something about the product goes here. Not More than 2 lines.</p>
+                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
+                                    <div class="carousel_caption">
+                                        <h5><a href="#">Praesent estsum etium</a></h5>
+                                        <p>Something about the product goes here. Not More than 2 lines.</p>
+                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
+                                    </div>
+                                </li>
 
                             </ul>
                             <div class="clearfix"></div>

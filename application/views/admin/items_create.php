@@ -72,6 +72,7 @@ $this->load->view('admin/header');
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select a Category</option>
                                     <?php
+                                    $categoryList = kanakata_category_list();
                                     foreach ($categoryList as $list) {
                                         echo '<option value=' . $list->category_id . '> ' . $list->category_name . '</option>';
                                     }

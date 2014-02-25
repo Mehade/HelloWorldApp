@@ -8,9 +8,9 @@ $this->load->view('admin/header');
     <section class="wrapper">
         <!-- page start-->
         <div class="row">
-            
+
             <div class="col-lg-2"></div>
-            
+
             <?php
             $attributes = array('class' => 'form-horizontal', 'id' => 'viewSearchItemsForm', 'role' => 'form');
             echo form_open('item/search_view', $attributes);
@@ -32,11 +32,12 @@ $this->load->view('admin/header');
                             <div class="col-lg-3" style="margin-left: 40px;">
                                 <input type="radio" name="radio"  value="category"/> Search By Category
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select a Category</option>
                                     <?php
+                                    $categoryList = kanakata_category_list();
                                     foreach ($categoryList as $list) {
                                         echo '<option value=' . $list->category_id . '> ' . $list->category_name . '</option>';
                                     }
@@ -48,7 +49,7 @@ $this->load->view('admin/header');
                             <div class="col-lg-3" style="margin-left: 40px;">
                                 <input type="radio" name="radio"  value="itemName"/> Search By Name
                             </div>
-                            
+
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" name="item_name" value="" id="item_name" placeholder="Search by items name ">
                             </div>
@@ -63,8 +64,8 @@ $this->load->view('admin/header');
                     </div>
                 </section> 
             </aside>
-           
-         
+
+
             <?php
             echo form_close();
             ?>
@@ -96,30 +97,30 @@ $this->load->view('admin/header');
                                 <tr>
                                     <td class="hidden-phone"><?php echo $aItemView->name; ?></td>
                                     <td class="hidden-phone"><?php echo $aItemView->price; ?></td>
-                                    <td class="hidden-phone"><img src="<?php echo base_url()."upload/". $aItemView->image; ?>"/></td>
+                                    <td class="hidden-phone"><img src="<?php echo base_url() . "upload/" . $aItemView->image; ?>"/></td>
                                     <td class="hidden-phone"><?php echo $aItemView->catName; ?></td>  
                                 </tr> 
                             <?php } ?>
                         </tbody>
                     </table>
                 </section>
-                
+
                 <div class="text-center">
-                    <div class="pagination pagination-lg">
-                        <?php echo $this->pagination->create_links();  ?>
-                    </div>
+
+                    <?php echo $this->pagination->create_links(); ?>
+
                 </div>
-                
+
             </div>
             <div class="col-lg-2"></div>
         </div>
         <!-- page end-->            
-        
+
     </section>
 </section>
-    <!--main content end-->
+<!--main content end-->
 
 
-    <?php
-    $this->load->view('admin/footer');
-    ?>
+<?php
+$this->load->view('admin/footer');
+?>

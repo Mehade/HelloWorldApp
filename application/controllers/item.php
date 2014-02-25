@@ -10,21 +10,16 @@ class Item extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index() {
-
-        $this->load->view('admin/items_create', $data);
+    public function index() {        
+        $this->load->view('admin/items_create');
     }
 
     public function search_view() {
-
         $checkedValue = $this->input->post('radio');
 
         if ($checkedValue == 'category') {
-
             $this->item_model->category_id = $this->input->post('category_id');
-
             if ($this->item_model->NumberOfItems() > 0) {
-
                 $config['base_url'] = 'http://localhost/kenakata/item/search_view';
                 $config['total_rows'] = $this->item_model->NumberOfItems();
                 $config['per_page'] = 5;
@@ -47,7 +42,7 @@ class Item extends CI_Controller {
                 $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
-                $categoryList = kanakata_category_list();
+                //$categoryList = kanakata_category_list();
                 $this->load->view('admin/view_search_items', $data);
             }
         }
@@ -168,7 +163,7 @@ class Item extends CI_Controller {
         $config['prev_link'] = '&laquo;';
         $config['next_link'] = '&raquo;';
         $config['full_tag_open'] = '<ul class="pagination pagination-lg">';
-        $config['full_tag_close'] = ' </ul>';
+        $config['full_tag_close'] = '</ul>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
         $config['prev_tag_open'] = '<li>';
@@ -182,15 +177,12 @@ class Item extends CI_Controller {
         $config['last_link'] = FALSE;
         $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
-        $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-        $categoryList = kanakata_category_list();
+        $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));        
         $this->load->view('admin/view_search_items', $data);
     }
 
     public function name() {
-
         $this->item_model->item_name = $this->uri->segment(3);
-
         if ($this->item_model->nemberOFIntemByName() > 0) {
             $config['base_url'] = 'http://localhost/kenakata/item/name/' . $this->uri->segment(3);
             $config['total_rows'] = $this->item_model->nemberOFIntemByName();

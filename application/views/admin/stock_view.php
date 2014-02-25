@@ -8,24 +8,19 @@ $this->load->view('admin/header');
         <!-- page start-->
         <div class="row">
 
-            <div class="col-lg-2"></div>
+            <div class="col-lg-1"></div>
 
             <?php
             $attributes = array('class' => 'form-horizontal', 'id' => 'stockInfoForm', 'role' => 'form');
-            echo form_open('item/search_view', $attributes);
+            echo form_open('stock/search_item_view', $attributes);
             ?>
-            <aside class="profile-info col-lg-8">
+            <aside class="profile-info col-lg-10">
                 <section class="panel">
                     <div class="bio-graph-heading">
-                        Create Categories for KENAKATA online shopping center
+                        Search Stock Itmes 
                     </div>
-                    <div class="panel-body bio-graph-info">
-                        <?php
-                        if ($this->session->flashdata('user_insert_msg')) {
-                            echo '<div class="alert alert-block alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-ok-sign"></i></button><strong>SUCCESS! </strong>' . $this->session->flashdata('user_insert_msg') . '</div>';
-                        }
-                        ?>
-                        <h1> Category Information</h1>
+                    <div class="panel-body bio-graph-info">                        
+                        <h1> Stock Information</h1>
 
                         <div class="form-group">
                             <div class="col-lg-3" style="margin-left: 40px;">
@@ -36,6 +31,7 @@ $this->load->view('admin/header');
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select a Category</option>
                                     <?php
+                                    $categoryList = kanakata_category_list();
                                     foreach ($categoryList as $list) {
                                         echo '<option value=' . $list->category_id . '> ' . $list->category_name . '</option>';
                                     }
@@ -45,7 +41,7 @@ $this->load->view('admin/header');
                         </div>
                         <div class="form-group">
                             <div class="col-lg-3" style="margin-left: 40px;">
-                                <input type="radio" name="radio"  value="itemName"/> Search By Name
+                                <input type="radio" name="radio"  value="item"/> Search By Name
                             </div>
 
                             <div class="col-lg-6">
@@ -55,7 +51,7 @@ $this->load->view('admin/header');
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button type="submit" class="btn btn-info" style="margin-left: 105px;">Search</button>
+                                <button type="submit" class="btn btn-info" style="margin-left: 120px;">Search</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>
@@ -67,13 +63,13 @@ $this->load->view('admin/header');
             <?php
             echo form_close();
             ?>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-1"></div>
         </div>
 
 
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
                 <section class="panel-primary">
                     <header class="panel-heading">
                         View/Search Items
@@ -85,32 +81,70 @@ $this->load->view('admin/header');
                                 <th><i class="icon-bookmark"></i> Unit Price</th>
                                 <th><i class="icon-picture"></i> Image</th>
                                 <th><i class="icon-list"></i> Category Name</th>
+                                <th><i class="icon-tags"></i> Present Quantity</th>
+                                <th><i class="icon-edit"></i> New Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sn = 1;
-                            foreach ($ItemViewList as $aItemView) {
-                                ?>
-                                <tr>
-                                    <td class="hidden-phone"><?php echo $aItemView->name; ?></td>
-                                    <td class="hidden-phone"><?php echo $aItemView->price; ?></td>
-                                    <td class="hidden-phone"><img src="<?php echo base_url() . "upload/" . $aItemView->image; ?>"/></td>
-                                    <td class="hidden-phone"><?php echo $aItemView->catName; ?></td>  
-                                </tr> 
-                            <?php } ?>
+                            $this->load->helper('html');
+                            if (isset($ItemViewList)) {
+                                $sn = 1;
+                                foreach ($ItemViewList as $aList) {
+
+                                    $image_properties = array(
+                                        'src' => 'upload/' . $aList->image,
+                                        'alt' => 'Me, demonstrating how to eat 4 slices of pizza at one time',
+                                        'class' => 'post_images',
+                                        'width' => '100',
+                                        'height' => '100',
+                                        'title' => 'That was quite a night',
+                                        'rel' => 'lightbox',
+                                    );
+                                    ?>
+                                    <tr>
+                                        <td class="hidden-phone"><?php echo $aList->name; ?></td>
+                                        <td class="hidden-phone"><?php echo $aList->price; ?></td>
+                                        <td class="hidden-phone"><?php echo img($image_properties); ?></td>
+                                        <td class="hidden-phone"><?php echo $aList->catName; ?></td>
+                                        <td class="hidden-phone"><?php echo $aList->qty; ?></td>
+                                        <td>
+
+                                            <?php
+                                            $attribute = array(
+                                                'role' => 'form',
+                                                'id' => 'viewSearchItem'
+                                            );
+                                            echo form_open('stock/updateStock', $attribute);
+                                            ?>
+
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="nqty" value="" id="nqty" placeholder="Add Quantity">
+                                                <input type="hidden" name="prductId" value="<?php echo $aList->item_id; ?>">
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" class="btn btn-info" value="Add"/>
+                                            </div>
+                                            <?php echo form_close(); ?>
+                                        </td>
+                                    </tr> 
+                                    <?php
+                                }
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </section>
 
                 <div class="text-center">
                     <div class="pagination pagination-lg">
-                        <?php echo $this->pagination->create_links(); ?>
+                        <?php //echo $this->pagination->create_links();   ?>
                     </div>
                 </div>
 
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-1"></div>
         </div>
         <!-- page end-->            
 
