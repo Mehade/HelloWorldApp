@@ -127,9 +127,12 @@ class Item_model extends CI_Model {
         $query = $this->db->get();
         return $query->row_array();
     }  
-    public function getCategoryWiseProduct() {
-        $this->db->where('category_id', $this->category_id); 
-        $query = $this->db->get('item');
+    public function getCategoryWiseProduct($per_page, $limit) {
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->where('category_id', $this->category_id);
+        $this->db->limit($per_page, $limit);
+        $query = $this->db->get();
         return $query->result();
     }
     

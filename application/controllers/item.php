@@ -11,13 +11,13 @@ class Item extends CI_Controller {
     }
 
     public function index() {
-       
+
         $this->load->view('admin/items_create', $data);
     }
 
     public function search_view() {
 
-        $checkedValue = $this->input->post('radio');        
+        $checkedValue = $this->input->post('radio');
 
         if ($checkedValue == 'category') {
 
@@ -47,7 +47,7 @@ class Item extends CI_Controller {
                 $config['first_link'] = FALSE;
                 $this->pagination->initialize($config);
                 $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
-//                $data['categoryList'] = $this->item_model->get_all_category();
+                $categoryList = kanakata_category_list();
                 $this->load->view('admin/view_search_items', $data);
             }
         }
@@ -82,19 +82,42 @@ class Item extends CI_Controller {
                 $this->load->view('admin/view_search_items', $data);
             }
         }
-        $data['categoryList'] = $this->item_model->get_all_category();
+        $categoryList = kanakata_category_list();
     }
 
     public function show() {
-        
+        $categoryList = kanakata_category_list();
         $catId = $this->uri->segment(3);
         $this->item_model->category_id = $catId;
-        
         $this->category_model->category_id = $catId;
-        $data['catName'] = $this->category_model->get_category_name();
-        
-        $data['itemlist'] = $this->item_model->getCategoryWiseProduct();
-        $this->load->view('show_items', $data);                
+        $data['catName'] = $this->category_model->get_category_name();       
+
+        $config['base_url'] = 'http://localhost/kenakata/item/show';
+        $config['total_rows'] = $this->item_model->NumberOfItems();
+        $config['per_page'] = 9;
+        $config['num_links'] = 5;
+        $config['prev_link'] = '&laquo;';
+        $config['next_link'] = '&raquo;';
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = ' </ul>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_open'] = '</li>';
+        $config['last_link'] = FALSE;
+        $config['first_link'] = FALSE;
+        $this->pagination->initialize($config);
+        $data['itemlist'] = $this->item_model->getCategoryWiseProduct($config['per_page'], $this->uri->segment(3));
+
+
+        //$data['itemlist'] = $this->item_model->getCategoryWiseProduct();
+        $this->load->view('show_items', $data);
     }
 
     public function detailsOfAnItem() {
@@ -109,10 +132,10 @@ class Item extends CI_Controller {
         $this->form_validation->set_rules('item_name', 'Item Name', 'required|callback_has_item_name');
         $this->form_validation->set_rules('unit_price', 'Unit Price', 'required');
         $this->form_validation->set_rules('category_id', 'Category Id', 'required');
-        //$this->form_validation->set_rules('item_pic', 'Item Image', 'required');
+
 
         if ($this->form_validation->run() == FALSE) {
-            
+
             $this->load->view('view_items', $data);
         } else {
 
@@ -127,7 +150,7 @@ class Item extends CI_Controller {
 
             if (!$this->upload->do_upload()) {
                 $data['error'] = $this->upload->display_errors();
-               
+
                 $this->load->view('view_items', $data);
             } else {
                 $data = $this->upload->data();
@@ -170,7 +193,7 @@ class Item extends CI_Controller {
         }
     }
 
-    public function search() {         
+    public function search() {
         $config['base_url'] = 'http://localhost/kenakata/item/search';
         $config['total_rows'] = $this->item_model->NumberOfItems();
         $config['per_page'] = 5;
@@ -193,13 +216,13 @@ class Item extends CI_Controller {
         $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
         $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-        
+        $categoryList = kanakata_category_list();
         $this->load->view('admin/view_search_items', $data);
     }
 
     public function name() {
 
-        $this->item_model->item_name = $this->uri->segment(3);        
+        $this->item_model->item_name = $this->uri->segment(3);
 
         if ($this->item_model->nemberOFIntemByName() > 0) {
             $config['base_url'] = 'http://localhost/kenakata/item/name/' . $this->uri->segment(3);
@@ -228,79 +251,8 @@ class Item extends CI_Controller {
         }
     }
 
-    public function search_item_view() {
-
-        $checkedValue = $this->input->post('radio');
-        if ($checkedValue == 'category') {
-
-            $this->item_model->category_id = $this->input->post('category_id');
-
-            if ($this->item_model->NumberOfItems() > 0) {
-                $config['base_url'] = 'http://localhost/kenakata/item/search_item_view';
-                $config['total_rows'] = $this->item_model->NumberOfItems();
-                $config['per_page'] = 5;
-                $config['num_links'] = 5;
-//            $config['prev_link'] = '&laquo;';
-//            $config['next_link'] = '&raquo;';
-//            $config['full_tag_open'] = '<ul>';
-//            $config['full_tag_close'] = ' </ul>';
-//            $config['num_tag_open'] = '<li>';
-//            $config['num_tag_close'] = '</li>';
-//            $config['prev_tag_open'] = '<li>';
-//            $config['prev_tag_close'] = '</li>';
-//            $config['next_tag_open'] = '<li>';
-//            $config['next_tag_close'] = '</li>';
-//            $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
-//            $config['cur_tag_close'] = '</a></li>';
-//            $config['last_tag_open'] = '<li>';
-//            $config['last_tag_open'] = '</li>';
-//            $config['last_link'] = FALSE;
-//            $config['first_link'] = FALSE;
-                $this->pagination->initialize($config);
-                $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
-                $this->load->view('view_search_item', $data);
-            }
-
-            //$data['ItemViewList'] = $this->item_model->item_wise_search_cat();
-        }
-        if ($checkedValue == 'item') {
-
-            $this->item_model->item_name = $this->input->post('item_name');
-            //$data['ItemViewList'] = $this->item_model->item_wise_search();
-
-            if ($this->item_model->nemberOFIntemByName() > 0) {
-                $config['base_url'] = 'http://localhost/kenakata/item/name/' . $this->input->post('item_name');
-                $config['total_rows'] = $this->item_model->nemberOFIntemByName();
-                $config['per_page'] = 5;
-                $config['num_links'] = 5;
-//            $config['prev_link'] = '&laquo;';
-//            $config['next_link'] = '&raquo;';
-//            $config['full_tag_open'] = '<ul>';
-//            $config['full_tag_close'] = ' </ul>';
-//            $config['num_tag_open'] = '<li>';
-//            $config['num_tag_close'] = '</li>';
-//            $config['prev_tag_open'] = '<li>';
-//            $config['prev_tag_close'] = '</li>';
-//            $config['next_tag_open'] = '<li>';
-//            $config['next_tag_close'] = '</li>';
-//            $config['cur_tag_open'] = '<li  style="font-weight: bold;"><a href="">';
-//            $config['cur_tag_close'] = '</a></li>';
-//            $config['last_tag_open'] = '<li>';
-//            $config['last_tag_open'] = '</li>';
-//            $config['last_link'] = FALSE;
-//            $config['first_link'] = FALSE;
-                $this->pagination->initialize($config);
-                $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-                $this->load->view('view_search_item', $data);
-            }
-
-            //$this->load->view('view_search_item', $data);
-        }
-        $data['categoryList'] = $this->category_model->get_all_category();
-    }
-
     public function update_price_view() {
-        
+        $categoryList = kanakata_category_list();
         $data['itemList'] = $this->item_model->get_all_item();
         $this->load->view('update_price_view', $data);
     }
