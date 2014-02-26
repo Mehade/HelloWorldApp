@@ -85,7 +85,7 @@
                     <!-- sidebar menu start-->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a class="" href="<?php echo base_url(); ?>admins/dashboard">
+                            <a class="" href="#">
                                 <i class="icon-dashboard"></i>
                                 <span>Dashboard</span>
                             </a>

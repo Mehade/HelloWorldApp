@@ -146,7 +146,6 @@ class Item_model extends CI_Model {
     }
 
     public function hotsells() {
-
         $this->db->select('item.item_id,item.item_name,count(order_item.item_id)as mcount,item.item_name,item.item_description,item.item_unit_price,item.item_image');
         $this->db->from('item');
         $this->db->join('order_item', 'item.item_id = order_item.item_id','left');

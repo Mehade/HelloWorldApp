@@ -10,10 +10,8 @@ class Discount extends CI_Controller {
         $this->load->model('discount_model');
     }
 
-    public function index() {
-
-        $data['categoryList'] = $this->item_model->get_all_category();
-        $this->load->view('discount_view', $data);
+    public function index() {        
+        $this->load->view('admin/discount');
     }
 
     public function getCategoryForItem() {
@@ -37,7 +35,7 @@ class Discount extends CI_Controller {
         $this->discount_model->start_date = $this->input->post('strtDate');
         $this->discount_model->end_date = $this->input->post('endDate');
         $this->discount_model->insert_discount();
-        $this->session->set_flashdata('msg', 'Discount Insert Successfully');       
+        $this->session->set_flashdata('msg', 'Discount Added Successfully');       
         redirect('discount/index', 'refresh');
         
     }

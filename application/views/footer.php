@@ -107,9 +107,7 @@
                     <div class="social">
                         <a href="#" class="facebook"><i class="icon-facebook"></i></a>
                         <a href="#" class="twitter"><i class="icon-twitter"></i></a>
-                        <a href="#" class="google-plus"><i class="icon-google-plus"></i></a>
-                        <a href="#" class="linkedin"><i class="icon-linkedin"></i></a>
-                        <a href="#" class="pinterest"><i class="icon-pinterest"></i></a>
+                        <a href="#" class="google-plus"><i class="icon-google-plus"></i></a>                        
                     </div>
                 </div>
             </div>

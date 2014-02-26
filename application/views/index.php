@@ -28,7 +28,7 @@ $this->load->view('header');
                
                  <!-- Items List starts -->
 
-                               <div class="row">
+                <div class="row">
                     <?php
                     foreach ($itemlist as $aitem) {
 

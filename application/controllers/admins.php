@@ -19,9 +19,6 @@ class Admins extends CI_Controller {
         }
     }
 
-    public function dashboard() {
-        $this->load->view('admin/main_page');
-    }
 
     public function error() {
         $this->load->view('admin/404');
