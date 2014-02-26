@@ -87,7 +87,7 @@ $this->load->view('header');
                <div class="col-md-3 col-md-pull-9">
                   <div class="sidey">
                       <ul class="nav">
-                        <li><a href="index.html"><i class="icon-home"></i> &nbsp;Category</a></li>
+                        <li><a href="#"><i class="icon-home"></i> &nbsp;Category</a></li>
                         <?php $categoryList = kanakata_category_list(); ?>
                         <?php
                         foreach ($categoryList as $aCategory) {

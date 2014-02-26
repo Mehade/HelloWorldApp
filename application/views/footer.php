@@ -27,15 +27,12 @@
                                 foreach ($dis_items as $aDiscount) {
                                     ?>
 
-                                    <li>  
-
-
-
+                                    <li>                                         
                                         <a href="#"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
                                         <div class="carousel_caption">
                                             <h5><a href="#"><?php echo $aDiscount->item_name; ?></a></h5>
                                             <p>Something about the product goes here. Not More than 2 lines.</p>
-                                            <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> <?php echo $aDiscount->disprice . " TK"; ?></a>
+                                            <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> <?php echo "Buy for ". $aDiscount->disprice . " TK"; ?></a>
                                             <input type="hidden" name="item_price" value="<?php echo $aDiscount->disprice; ?>"/>
                                         </div>
                                     </li>

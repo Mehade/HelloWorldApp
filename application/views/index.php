@@ -17,14 +17,7 @@ $this->load->view('header');
             
             <div class="row">
                
-               <div class="col-md-9 col-md-push-3">
-               
-                   <!-- Breadcrumb -->
-<!--                 <ul class="breadcrumb">
-                   <li><a href="index.html">Home</a> <span class="divider"></span></li>
-                   <li><a href="items.html">Smartphone</a> <span class="divider"></span></li>
-                   <li class="active">Apple</li>
-                 </ul>-->
+               <div class="col-md-9 col-md-push-3">              
                
                  <!-- Items List starts -->
 
@@ -94,7 +87,7 @@ $this->load->view('header');
                <div class="col-md-3 col-md-pull-9">
                   <div class="sidey">
                       <ul class="nav">
-                        <li><a href="index.html"><i class="icon-home"></i> &nbsp;Category</a></li>
+                          <li><a href="#"><i class="icon-home"></i> &nbsp;Category</a></li>
                         <?php $categoryList = kanakata_category_list(); ?>
                         <?php
                         foreach ($categoryList as $aCategory) {

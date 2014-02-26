@@ -22,8 +22,8 @@ class Order extends CI_Controller {
 
         $this->order_model->order_number = $order_number;
         $this->order_model->user_id = $this->input->post('user_id');
-        $this->order_model->billing_address = $this->input->post('different_bill_add');
-        $this->order_model->shipping_address = $this->input->post('different_ship_add');
+        $this->order_model->billing_address = $this->input->post('differentBillAdd');
+        $this->order_model->shipping_address = $this->input->post('sameAddBill');
         $inserttedId = $this->order_model->order_insert();
 
         $this->order_item_model->order_id = $inserttedId;
