@@ -2,19 +2,17 @@
 $this->load->view('header');
 ?>
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>main/css/gzoom.css"/>
-<script type="text/javascript" src="<?php echo base_url(); ?>main/js/gzoom.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>main/js/jquery.elevatezoom.js"></script>
 <script>
-    
-    $zoom = $("#zoom_no_lbox").gzoom({
-            sW: 300,
-            sH: 225,
-            lW: 1024,
-            lH: 768,
-            lightbox: true
-        });
-    $zoom.setZoom(50);
-    
+
+    $('#zoom_image').elevateZoom({
+        zoomType: "inner",
+        cursor: "crosshair",
+        zoomWindowFadeIn: 500,
+        zoomWindowFadeOut: 750
+    });
+
 </script>
 
 <div class="row">
@@ -31,10 +29,10 @@ $this->load->view('header');
         <div class="single-item">
             <div class="row">
                 <div class="col-md-4 col-xs-5">
-                    
+
                     <div class=""></div>
-                    <div class="item-image" id="zoom_no_lbox">
-                        <img src="<?php echo base_url() . "upload/" . $alist->item_image; ?>" alt="" class="img-responsive" height="400" width="400" />
+                    <div class="item-image" >
+                        <img id="zoom_image" src="<?php echo base_url() . "upload/" . $alist->item_image; ?>" alt="" class="img-responsive" height="500" width="500" />
                     </div>
 
 
@@ -133,7 +131,7 @@ $this->load->view('header');
         </div>
 
         <!-- Sidebar items (featured items)-->
-      
+
     </div>
 </div>
 
