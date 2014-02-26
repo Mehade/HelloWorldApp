@@ -2,6 +2,21 @@
 $this->load->view('header');
 ?>
 
+<link rel="stylesheet" href="<?php echo base_url(); ?>main/css/gzoom.css"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>main/js/gzoom.js"></script>
+<script>
+    
+    $zoom = $("#zoom_no_lbox").gzoom({
+            sW: 300,
+            sH: 225,
+            lW: 1024,
+            lH: 768,
+            lightbox: true
+        });
+    $zoom.setZoom(50);
+    
+</script>
+
 <div class="row">
 
     <div class="col-md-9 col-md-push-3">
@@ -16,8 +31,9 @@ $this->load->view('header');
         <div class="single-item">
             <div class="row">
                 <div class="col-md-4 col-xs-5">
-
-                    <div class="item-image">
+                    
+                    <div class=""></div>
+                    <div class="item-image" id="zoom_no_lbox">
                         <img src="<?php echo base_url() . "upload/" . $alist->item_image; ?>" alt="" class="img-responsive" height="400" width="400" />
                     </div>
 
@@ -43,11 +59,11 @@ $this->load->view('header');
                             <button class="btn btn-info" type="submit">Add</button>
                         </span>
                     </div><!-- /input-group -->
-
+                    <br/>
                     <div class="social">
-                        <a href="#" class="facebook"><i class="icon-facebook"></i></a>
-                        <a href="#" class="twitter"><i class="icon-twitter"></i></a>
-                        <a href="#" class="google-plus"><i class="icon-google-plus"></i></a>
+                        <h4>Shear in</h4>
+                        <a href="https://www.facebook.com/NerdCastle" class="facebook"><i class="icon-facebook"></i></a>
+                        <a href="https://twitter.com/" class="twitter"><i class="icon-twitter"></i></a>                        
                     </div>
                     <!-- Share button -->
 

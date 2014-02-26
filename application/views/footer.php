@@ -24,12 +24,12 @@
 
                                 <?php
                                 $dis_items = kanakata_discount_list();
-                                foreach ($dis_items as $aDiscount) {                                    
+                                foreach ($dis_items as $aDiscount) {
                                     ?>
 
                                     <li>  
 
-                                        
+
 
                                         <a href="#"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
                                         <div class="carousel_caption">
@@ -39,7 +39,7 @@
                                             <input type="hidden" name="item_price" value="<?php echo $aDiscount->disprice; ?>"/>
                                         </div>
                                     </li>
-                                <?php                                    
+                                    <?php
                                 }
                                 ?>
 
@@ -105,9 +105,9 @@
                     <hr />                            
 
                     <div class="social">
-                        <a href="#" class="facebook"><i class="icon-facebook"></i></a>
-                        <a href="#" class="twitter"><i class="icon-twitter"></i></a>
-                        <a href="#" class="google-plus"><i class="icon-google-plus"></i></a>                        
+                        <a href="https://www.facebook.com/NerdCastle" class="facebook"><i class="icon-facebook"></i></a>
+                        <a href="https://twitter.com/" class="twitter"><i class="icon-twitter"></i></a>
+                        <a href="https://groups.google.com/forum/#!forum/nc-oop-php-ci-02" class="google-plus"><i class="icon-google-plus"></i></a>                        
                     </div>
                 </div>
             </div>

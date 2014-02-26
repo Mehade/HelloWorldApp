@@ -155,5 +155,11 @@ class Item_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function allItemSearchByName() {
+        $this->db->like('item_name', $this->item_name);
+        $query = $this->db->get('item');
+        return $query->result();
+    }
 
 }

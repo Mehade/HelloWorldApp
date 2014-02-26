@@ -30,7 +30,8 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="<?php echo base_url(); ?>main/img/cart.png">
-        <script src="<?php echo base_url(); ?>main/js/jquery.js"></script>
+        
+        <script src="<?php echo base_url(); ?>main/js/jquery-1.8.3.min.js"></script>        
     </head>
 
     <body>
@@ -95,9 +96,9 @@
                         <!--Social Icons Start-->
 
                         <div class="social">
-                            <a href="#" class="facebook"><i class="icon-facebook"></i></a>
-                            <a href="#" class="twitter"><i class="icon-twitter"></i></a>
-                            <a href="#" class="google-plus"><i class="icon-google-plus"></i></a>                            
+                            <a href="https://www.facebook.com/NerdCastle" class="facebook"><i class="icon-facebook"></i></a>
+                            <a href="https://twitter.com/" class="twitter"><i class="icon-twitter"></i></a>
+                            <a href="https://groups.google.com/forum/#!forum/nc-oop-php-ci-02" class="google-plus"><i class="icon-google-plus"></i></a>                            
                         </div>
 
                         <!--Social Icons End-->
@@ -113,11 +114,11 @@
                             'class' => 'form-inline',
                             'role' => 'form'
                         );
-                        echo form_open('cart/add_to_cart', $attribute)
+                        echo form_open('item/all_item_name', $attribute)
                         ?>
                         <div class="form-group">
                             <input type="text" class="form-control" id="search" name="search" placeholder="Search here">
-                           
+
                         </div>
                         <button type="submit" class="btn btn-primary" style="margin-top: 0px;margin-left: 5px;"><i class="icon-search"></i> Item Search</button>
 

@@ -10,7 +10,7 @@ class Item extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index() {        
+    public function index() {
         $this->load->view('admin/items_create');
     }
 
@@ -18,69 +18,88 @@ class Item extends CI_Controller {
         $checkedValue = $this->input->post('radio');
 
         if ($checkedValue == 'category') {
-            $this->item_model->category_id = $this->input->post('category_id');
-            if ($this->item_model->NumberOfItems() > 0) {
-                $config['base_url'] = 'http://localhost/kenakata/item/search_view';
-                $config['total_rows'] = $this->item_model->NumberOfItems();
-                $config['per_page'] = 5;
-                $config['num_links'] = 5;
-                $config['prev_link'] = '&laquo;';
-                $config['next_link'] = '&raquo;';
-                $config['full_tag_open'] = '<ul class="pagination pagination-lg">';
-                $config['full_tag_close'] = ' </ul>';
-                $config['num_tag_open'] = '<li>';
-                $config['num_tag_close'] = '</li>';
-                $config['prev_tag_open'] = '<li>';
-                $config['prev_tag_close'] = '</li>';
-                $config['next_tag_open'] = '<li>';
-                $config['next_tag_close'] = '</li>';
-                $config['cur_tag_open'] = '<li class="active"><a href="">';
-                $config['cur_tag_close'] = '</a></li>';
-                $config['last_tag_open'] = '<li>';
-                $config['last_tag_open'] = '</li>';
-                $config['last_link'] = FALSE;
-                $config['first_link'] = FALSE;
-                $this->pagination->initialize($config);
-                $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
-                //$categoryList = kanakata_category_list();
-                $this->load->view('admin/view_search_items', $data);
-            }
+            $categoryId = $this->input->post('category_id');
+            $this->showByCat($categoryId);
         }
         if ($checkedValue == 'itemName') {
-
-            $this->item_model->item_name = $this->input->post('item_name');
-            //$data['ItemViewList'] = $this->item_model->item_wise_search();
-
-            if ($this->item_model->nemberOFIntemByName() > 0) {
-                $config['base_url'] = 'http://localhost/kenakata/item/name/' . $this->input->post('item_name');
-                $config['total_rows'] = $this->item_model->nemberOFIntemByName();
-                $config['per_page'] = 5;
-                $config['num_links'] = 5;
-                $config['prev_link'] = '&laquo;';
-                $config['next_link'] = '&raquo;';
-                $config['full_tag_open'] = '<ul class="pagination pagination-lg">';
-                $config['full_tag_close'] = ' </ul>';
-                $config['num_tag_open'] = '<li>';
-                $config['num_tag_close'] = '</li>';
-                $config['prev_tag_open'] = '<li>';
-                $config['prev_tag_close'] = '</li>';
-                $config['next_tag_open'] = '<li>';
-                $config['next_tag_close'] = '</li>';
-                $config['cur_tag_open'] = '<li class="active"><a href="">';
-                $config['cur_tag_close'] = '</a></li>';
-                $config['last_tag_open'] = '<li>';
-                $config['last_tag_open'] = '</li>';
-                $config['last_link'] = FALSE;
-                $config['first_link'] = FALSE;
-                $this->pagination->initialize($config);
-                $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
-                $this->load->view('admin/view_search_items', $data);
-            }
+            $item_name = $this->input->post('item_name');
+            $this->showByItem($item_name);
         }
-        $categoryList = kanakata_category_list();
     }
 
-    
+    public function showByCat($cat = 0) {
+        if ($cat == 0) {
+            $this->item_model->category_id = $this->uri->segment(3);
+            $cat = $this->uri->segment(3);
+        } else {
+            $this->item_model->category_id = $cat;
+        }
+
+        if ($this->item_model->NumberOfItems() > 0) {
+            $config['base_url'] = 'http://localhost/kenakata/item/showByCat/' . $cat;
+            $config['total_rows'] = $this->item_model->NumberOfItems();
+            $config['per_page'] = 5;
+            $config['num_links'] = 5;
+            $config['prev_link'] = '&laquo;';
+            $config['next_link'] = '&raquo;';
+            $config['full_tag_open'] = '<ul class="pagination pagination-lg">';
+            $config['full_tag_close'] = ' </ul>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="">';
+            $config['cur_tag_close'] = '</a></li>';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_open'] = '</li>';
+            $config['last_link'] = FALSE;
+            $config['first_link'] = FALSE;
+            $this->pagination->initialize($config);
+            $data['ItemViewList'] = $this->item_model->item_wise_search_cat($config['per_page'], $this->uri->segment(3));
+            //$categoryList = kanakata_category_list();
+
+            $this->load->view('admin/view_search_items', $data);
+        }
+    }
+
+    public function showByItem($cat = '') {
+
+        if ($cat == '') {
+            $this->item_model->item_name = $this->uri->segment(3);
+            $cat = $this->uri->segment(3);
+        } else {
+            $this->item_model->item_name = $cat;
+        }
+
+
+        if ($this->item_model->nemberOFIntemByName() > 0) {
+            $config['base_url'] = 'http://localhost/kenakata/item/showByItem/' . $cat;
+            $config['total_rows'] = $this->item_model->nemberOFIntemByName();
+            $config['per_page'] = 5;
+            $config['num_links'] = 5;
+            $config['prev_link'] = '&laquo;';
+            $config['next_link'] = '&raquo;';
+            $config['full_tag_open'] = '<ul class="pagination pagination-lg">';
+            $config['full_tag_close'] = ' </ul>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="">';
+            $config['cur_tag_close'] = '</a></li>';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_open'] = '</li>';
+            $config['last_link'] = FALSE;
+            $config['first_link'] = FALSE;
+            $this->pagination->initialize($config);
+            $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(4));
+            $this->load->view('admin/view_search_items', $data);
+        }
+    }
 
     public function detailsOfAnItem() {
         $itemId = $this->uri->segment(3);
@@ -177,7 +196,7 @@ class Item extends CI_Controller {
         $config['last_link'] = FALSE;
         $config['first_link'] = FALSE;
         $this->pagination->initialize($config);
-        $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));        
+        $data['ItemViewList'] = $this->item_model->item_wise_search($config['per_page'], $this->uri->segment(3));
         $this->load->view('admin/view_search_items', $data);
     }
 
@@ -234,6 +253,12 @@ class Item extends CI_Controller {
         $this->item_model->item_id = $this->input->post('id');
         $item = $this->item_model->getCategorywiseItem();
         echo json_encode($item);
+    }
+
+    public function all_item_name() {
+        $this->item_model->item_name = $this->input->post('search');
+        $data['itemlist'] = $this->item_model->allItemSearchByName();
+        $this->load->view('all_item_search', $data);
     }
 
 }

@@ -2,12 +2,12 @@
 $this->load->view('header');
 ?>
 <!-- Page title -->
-<!--      <div class="page-title">
+      <div class="page-title">
          <div class="container">
-            <h2><i class="icon-desktop color"></i> Laptops & Desktops <small>Subtext for header</small></h2>
+            <h2><i class="icon-search color"></i> Search Result </h2>
             <hr />
          </div>
-      </div>-->
+      </div>
       <!-- Page title -->
       
       <!-- Page content -->
@@ -19,12 +19,6 @@ $this->load->view('header');
                
                <div class="col-md-9 col-md-push-3">
                
-                   <!-- Breadcrumb -->
-<!--                 <ul class="breadcrumb">
-                   <li><a href="index.html">Home</a> <span class="divider"></span></li>
-                   <li><a href="items.html">Smartphone</a> <span class="divider"></span></li>
-                   <li class="active">Apple</li>
-                 </ul>-->
                
                  <!-- Items List starts -->
 
@@ -41,8 +35,7 @@ $this->load->view('header');
 
                         <!-- Item #1 -->
                         <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="item">
-                                <div class="item-icon"><span>HOT</span></div>
+                            <div class="item">                                
                                 <input type="hidden" name="item_id" value="<?php echo $aitem->item_id; ?>"/>
                                 <input type="hidden" name="quantity" value="1"/>
                                 <input type="hidden" name="item_name" value="<?php echo $aitem->item_name; ?>"/>

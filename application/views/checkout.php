@@ -1,7 +1,17 @@
 <?php
 echo $this->load->view('header');
 ?>
-
+<script>
+    $(document).ready(function() {
+        $('input:radio[id="sameadd"]').change(
+                function() {
+                  var mm =  $("#differentBillAdd").val();
+                  
+                  $("#sameAddBill").text(mm);
+                  $("#sameAddBill").val(mm);
+                });
+    });
+</script>
 
 <!-- Page title -->
 <div class="page-title">
@@ -29,7 +39,7 @@ echo $this->load->view('header');
 
             <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('user_id') ?>"/>
 
-        <?php
+            <?php
         } else {
             echo '<input type="hidden" name="user_id" value="3"/>';
         }
@@ -47,7 +57,7 @@ echo $this->load->view('header');
                 </div>
                 <div class="form-group">
                     <input type="radio" name="radio"  value="differentBillAdd"/> Use Different Address (below) for billing
-                    <textarea class="form-control" rows="3" cols="50" id="differentBillAdd" ></textarea>
+                    <textarea class="form-control" rows="3" cols="50" name="differentBillAdd" id="differentBillAdd" ></textarea>
                 </div>
             </div>
 
@@ -57,7 +67,7 @@ echo $this->load->view('header');
                     <textarea class="form-control" rows="3" cols="20" id="defaultShipAdd" readonly><?php echo $this->session->userdata('shipping_address') ?></textarea>                    
                 </div>
                 <div class="form-group">
-                    <input type="radio" name="radio" value="sameAddBill"/> Same Address of Billing                    
+                    <input type="radio" name="radio" value="sameAddBill" id="sameadd"/> Same Address of Billing                    
                     <textarea class="form-control" rows="3" cols="20" name="sameAddBill" id="sameAddBill" ></textarea>                    
                 </div>
                 <div class="form-group">

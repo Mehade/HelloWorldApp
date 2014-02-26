@@ -2,7 +2,6 @@
 echo $this->load->view('header');
 ?>
 
-
 <style>
     label.error{
         color: red;
@@ -14,14 +13,48 @@ echo $this->load->view('header');
     $(document).ready(function() {
         $("#userLoginForm").validate({
             rules: {
-                userLoginEmail: "required",
+                userLoginEmail:{
+                    required: true,
+                    email: true
+                },
                 userLoginPassword: "required"
             },
             messages: {
-                userLoginEmail: "Please enter a valid email",
+                userLoginEmail:{
+                    required: "Please enter your email",
+                    email: "Please enter a valid email"
+                },
                 userLoginPassword: "Please enter correct password"
             }
         });
+        
+        $("#userRegForm").validate({            
+            rules: {
+                userRegName: "required",
+                userRegEmail:{
+                    required: true,
+                    email: true
+                },
+                userRegPassword: "required",
+                userRegContact: "required",
+                userRegBillingAdd: "required",
+                userRegShippingAdd: "required",
+                agree: "required"
+            },
+            messages: {                
+                userRegName: "Please enter your name",
+                userRegEmail:{
+                    required: "Please enter your email",
+                    email: "Please enter a valid email"
+                },
+                userRegPassword: "Please enter your password",
+                userRegContact: "Please enter Contact Number",
+                userRegBillingAdd: "Please enter billing address",
+                userRegShippingAdd: "Please enter shipping address",
+                agree: "Please you must accept our terms and conditions"
+            }
+        });
+        
 
     });
 </script>
@@ -47,7 +80,7 @@ echo $this->load->view('header');
 
                     <?php
                     $attribute = array(
-                        'id' => 'userRegistrationForm',
+                        'id' => 'userRegForm',
                         'role' => 'form',
                         'class' => 'form-horizontal'
                     );
@@ -100,7 +133,7 @@ echo $this->load->view('header');
                             <div class="col-lg-offset-2 col-lg-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> I Agree Terms & Conditions
+                                        <input type="checkbox" name="agree" id="agree" required> I Agree Terms & Conditions
                                     </label>
                                 </div>
                             </div>
