@@ -42,44 +42,43 @@ echo $this->load->view('header');
                 if ($this->session->flashdata('update_msg')) {
                     echo '<div class="alert alert-block alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-ok-sign"></i></button><strong>SUCCESS! </strong>' . $this->session->flashdata('update_msg') . '</div>';
                 }
-                           
-                if($this->session->userdata('user_id') != NULL){
+                                                                
                 ?>
 
                 <div class="form-group">
                     <label for="userRegName" class="col-lg-2 control-label">Name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="userRegName" name="userRegName" value="<?php echo $this->session->userdata('user_name'); ?>">
+                        <input type="text" class="form-control" id="userRegName" name="userRegName" value="<?php echo $userInfo->user_name; ?>">
                     </div>
                 </div>                           
                 <div class="form-group">
                     <label for="userRegEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="userRegEmail" name="userRegEmail" value="<?php echo $this->session->userdata('user_email'); ?>">
+                        <input type="email" class="form-control" id="userRegEmail" name="userRegEmail" value="<?php echo $userInfo->user_email; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegPassword" class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="userRegPassword" name="userRegPassword" value="<?php echo $this->session->userdata('user_password'); ?>">
+                        <input type="password" class="form-control" id="userRegPassword" name="userRegPassword" value="<?php echo $userInfo->user_password; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegContact" class="col-lg-2 control-label">Contact No</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="userRegContact" name="userRegContact" value="<?php echo $this->session->userdata('user_contact'); ?>">
+                        <input type="text" class="form-control" id="userRegContact" name="userRegContact" value="<?php echo $userInfo->user_contact; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegBillingAdd" class="col-lg-2 control-label">Billing Address</label>
                     <div class="col-lg-10">                        
-                        <input type="text" class="form-control" id="userRegBillingAdd" name="userRegBillingAdd" value="<?php echo $this->session->userdata('billing_address'); ?>">
+                        <input type="text" class="form-control" id="userRegBillingAdd" name="userRegBillingAdd" value="<?php echo $userInfo->billing_address; ?>">
                     </div>
                 </div>   
                 <div class="form-group">
                     <label for="userRegShippingAdd" class="col-lg-2 control-label">Shipping Address</label>
                     <div class="col-lg-10">                        
-                        <input type="text" class="form-control" id="userRegShippingAdd" name="userRegShippingAdd" value="<?php echo $this->session->userdata('shipping_address'); ?>">
+                        <input type="text" class="form-control" id="userRegShippingAdd" name="userRegShippingAdd" value="<?php echo $userInfo->shipping_address; ?>">
                     </div>
                 </div>   
                 
@@ -90,8 +89,7 @@ echo $this->load->view('header');
                     </div>
                 </div>
 
-                <?php
-                }
+                <?php                
                 echo form_close();
                 ?>
 
@@ -101,6 +99,7 @@ echo $this->load->view('header');
 
         <div class="sep-bor"></div>
     </div>
+</div>
 </div>
 
 

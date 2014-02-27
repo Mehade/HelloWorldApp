@@ -46,7 +46,7 @@ class Admin_model extends CI_Model {
         $this->db->from('user');
         $this->db->where('user_id', $this->user_id);
         $query = $this->db->get();
-        return $query->result();
+        return $query->row();
     }
 
     public function update_user_info() {

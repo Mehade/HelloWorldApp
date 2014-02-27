@@ -94,39 +94,17 @@ $this->load->view('header');
     <div class="col-md-3 col-md-pull-9">
         <div class="sidey">
             <ul class="nav">
-                <li><a href="index.html"><i class="icon-home"></i> &nbsp;Home</a>
-                <li><a href="#"><i class="icon-mobile-phone"></i> &nbsp;Smartphones</a>
-                    <ul>
-                        <li><a href="items.html">Apple</a></li>
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Motorola</a></li>
-                        <li><a href="items.html">Nokia</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="icon-laptop"></i> &nbsp;Laptops</a>
-                    <ul>
-                        <li><a href="items.html">Apple</a></li>
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Motorola</a></li>
-                        <li><a href="items.html">Nokia</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="icon-briefcase"></i> &nbsp;Office Items</a>
-                    <ul>
-                        <li><a href="items.html">Apple</a></li>
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Motorola</a></li>
-                        <li><a href="items.html">Nokia</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="icon-camera"></i> &nbsp;Camera</a>
-                    <ul>
-                        <li><a href="items.html">Apple</a></li>
-                        <li><a href="items.html">Samsung</a></li>
-                        <li><a href="items.html">Motorola</a></li>
-                        <li><a href="items.html">Nokia</a></li>
-                    </ul>
-                </li>
+                <li><a href="index.html"><i class="icon-home"></i> &nbsp;Category</a>
+                    <?php $categoryList = kanakata_category_list(); ?>
+                    <?php
+                    foreach ($categoryList as $aCategory) {
+                        echo '<li>';
+                        echo '<a href=' . base_url() . "category/show/" . $aCategory->category_id . '/>';
+                        echo '&nbsp;' . $aCategory->category_name;
+                        echo '</a>';
+                        echo '</li>';
+                    }
+                    ?>                               
             </ul>
         </div>
 

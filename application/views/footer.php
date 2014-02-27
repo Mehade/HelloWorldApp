@@ -28,7 +28,7 @@
                                     ?>
 
                                     <li>                                         
-                                        <a href="#"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
+                                        <a href="<?php echo base_url() ?>item/detailsOfAnItem/<?php echo $aDiscount->item_id; ?>"><img src="<?php echo base_url() . "upload/" . $aDiscount->item_image; ?>" alt="" class="img-responsive"/></a>
                                         <div class="carousel_caption">
                                             <h5><a href="#"><?php echo $aDiscount->item_name; ?></a></h5>
                                             <p>Something about the product goes here. Not More than 2 lines.</p>
@@ -38,41 +38,8 @@
                                     </li>
                                     <?php
                                 }
-                                ?>
-
-                                <li>
-                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
-                                    <div class="carousel_caption">
-                                        <h5><a href="#">Praesent estsum etium</a></h5>
-                                        <p>Something about the product goes here. Not More than 2 lines.</p>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
-                                    <div class="carousel_caption">
-                                        <h5><a href="#">Praesent estsum etium</a></h5>
-                                        <p>Something about the product goes here. Not More than 2 lines.</p>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
-                                    <div class="carousel_caption">
-                                        <h5><a href="#">Praesent estsum etium</a></h5>
-                                        <p>Something about the product goes here. Not More than 2 lines.</p>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="img/items/7.png" alt="" class="img-responsive"/></a>
-                                    <div class="carousel_caption">
-                                        <h5><a href="#">Praesent estsum etium</a></h5>
-                                        <p>Something about the product goes here. Not More than 2 lines.</p>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="icon-shopping-cart"></i> Buy for $199</a>
-                                    </div>
-                                </li>
-
+                                ?>                                
+                                                                                                
                             </ul>
                             <div class="clearfix"></div>
                         </div>

@@ -1,22 +1,28 @@
 <?php
+
 class User extends CI_Controller {
+
     public function __construct() {
         parent::__construct();
         $this->load->model('admin_model');
     }
-    
+
     public function index() {
         $this->load->view('register_login');
     }
-    
+
     public function my_account_info() {
-         $this->load->view('my_account_info');
+        $this->admin_model->user_id = $this->session->userdata('user_id');
+        $data['userInfo'] = $this->admin_model->get_user_info();
+        $this->load->view('my_account_info', $data);
     }
-    
+
     public function edit_profile() {
-         $this->load->view('edit_profile');
+        $this->admin_model->user_id = $this->session->userdata('user_id');
+        $data['userInfo'] = $this->admin_model->get_user_info();
+        $this->load->view('edit_profile', $data);
     }
-    
+
     public function user_registration() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('userRegName', 'User Name', 'required');
@@ -41,7 +47,7 @@ class User extends CI_Controller {
             redirect('user', 'refresh');
         }
     }
-    
+
     function user_email($email) {
         $this->admin_model->user_email = $email;
         if ($this->admin_model->check_unique_user()) {
@@ -51,13 +57,12 @@ class User extends CI_Controller {
             return TRUE;
         }
     }
-        
-    
+
     public function user_login() {
         $this->admin_model->user_email = $this->input->post("userLoginEmail");
-        $this->admin_model->user_password = $this->input->post("userLoginPassword");        
-        
-        if ($info = $this->admin_model->getAAdmin()) {            
+        $this->admin_model->user_password = $this->input->post("userLoginPassword");
+
+        if ($info = $this->admin_model->getAAdmin()) {
             $userlogindata = array(
                 'user_id' => $info->user_id,
                 'user_password' => $info->user_password,
@@ -75,23 +80,17 @@ class User extends CI_Controller {
         } else {
             $this->session->set_flashdata('log', 'Invalid Username/Password');
             $this->load->view('register_login');
-        }               
+        }
     }
-    
+
     public function user_logout() {
         $this->session->unset_userdata();
         $this->session->sess_destroy();
         redirect('index', 'refresh');
     }
-    
-    public function get_a_user_info() {
-        if($this->admin_model->getAAdmin()){
-            $this->admin_model->user_id = $this->session->userdata('user_id');
-           $data['userInfo'] = $this->admin_model->get_user_info(); 
-        }
-    }
-    
-    public function update_profile() {        
+   
+
+    public function update_profile() {
         $this->admin_model->user_id = $this->session->userdata('user_id');
         $this->admin_model->user_name = $this->input->post('userRegName');
         $this->admin_model->user_email = $this->input->post('userRegEmail');
@@ -101,6 +100,7 @@ class User extends CI_Controller {
         $this->admin_model->shipping_address = $this->input->post('userRegShippingAdd');
         $this->admin_model->update_user_info();
         $this->session->set_flashdata('update_msg', 'Update Successfully Completed');
-        //redirect('user/edit_profile', 'refresh');
+        redirect('user/edit_profile', 'refresh');
     }
+
 }
