@@ -57,37 +57,37 @@ echo $this->load->view('header');
                 <div class="form-group">
                     <label for="userRegName" class="col-lg-2 control-label">Name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="userRegName" name="userRegName" value="<?php $this->session->userdata('user_name') ?>">
+                        <input type="text" class="form-control" id="userRegName" name="userRegName" value="<?php echo $this->session->userdata('user_name') ?>">
                     </div>
                 </div>                           
                 <div class="form-group">
                     <label for="userRegEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="userRegEmail" name="userRegEmail" value="<?php $this->session->userdata('user_email') ?>">
+                        <input type="email" class="form-control" id="userRegEmail" name="userRegEmail" value="<?php echo $this->session->userdata('user_email') ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegPassword" class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="userRegPassword" name="userRegPassword" value="<?php $this->session->userdata('user_password') ?>">
+                        <input type="password" class="form-control" id="userRegPassword" name="userRegPassword" value="<?php echo $this->session->userdata('user_password') ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegContact" class="col-lg-2 control-label">Contact No</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="userRegContact" name="userRegContact" value="<?php $this->session->userdata('user_contact') ?>">
+                        <input type="text" class="form-control" id="userRegContact" name="userRegContact" value="<?php echo $this->session->userdata('user_contact') ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userRegBillingAdd" class="col-lg-2 control-label">Billing Address</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" name="userRegBillingAdd" id="userRegBillingAdd" value="<?php $this->session->userdata('billing_address') ?>"></textarea>
+                        <textarea class="form-control" rows="3" name="userRegBillingAdd" id="userRegBillingAdd" value="<?php echo $this->session->userdata('billing_address') ?>"></textarea>
                     </div>
                 </div>   
                 <div class="form-group">
                     <label for="userRegShippingAdd" class="col-lg-2 control-label">Shipping Address</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" name="userRegShippingAdd" id="userRegShippingAdd" value="<?php $this->session->userdata('shipping_address') ?>"></textarea>
+                        <textarea class="form-control" rows="3" name="userRegShippingAdd" id="userRegShippingAdd" value="<?php echo $this->session->userdata('shipping_address') ?>"></textarea>
                     </div>
                 </div>   
                 

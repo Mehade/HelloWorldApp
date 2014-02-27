@@ -40,4 +40,12 @@ class Admin_model extends CI_Model {
         }
     }
     
+    public function get_user_info() {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user_id', $this->user_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }

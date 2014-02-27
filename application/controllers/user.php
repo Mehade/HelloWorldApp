@@ -82,4 +82,11 @@ class User extends CI_Controller {
         $this->session->sess_destroy();
         redirect('index', 'refresh');
     }
+    
+    public function get_a_user_info() {
+        if($this->admin_model->getAAdmin()){
+            $this->admin_model->user_id = $this->session->userdata('user_id');
+           $data['userInfo'] = $this->admin_model->get_user_info(); 
+        }
+    }
 }

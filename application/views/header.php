@@ -55,8 +55,22 @@
 
                     <div class="col-md-6 col-sm-5">
                         <div class="kart-links">
+                            
+                            <?php 
+                            if($this->session->userdata('user_name') != ''){
+                                echo '<a href="' . base_url() . 'user/my_account_info"><i class="icon-user" style="padding-right: 3px;"></i> Welcome <b>'. $this->session->userdata('user_name') .'</b></a>';
+                                echo '<a href="' . base_url() . 'user/user_logout"><i class="icon-lock" style="padding-right: 3px;"></i>Logout</a>';
+                                echo '<a href="' .base_url(). 'cart/add_to_cart"><i class="icon-shopping-cart"></i>';
+                                if($this->cart->contents()){
+                                    echo $this->cart->total_items() . ' Items -TK- ' . $this->cart->format_number($this->cart->total());
+                                }else{
+                                    echo '0 Items - TK 0.00';
+                                }
+                                echo '</a>';
+                            }else{
+                            ?>
+                            
                             <a href="<?php echo base_url(); ?>user/">Login/Signup</a> 
-
                             <a href="<?php echo base_url(); ?>cart/add_to_cart"><i class="icon-shopping-cart"></i> 
                                 <?php
                                 if ($this->cart->contents()) {
@@ -66,6 +80,7 @@
                                 }
                                 ?>
                             </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
