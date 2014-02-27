@@ -21,8 +21,7 @@ echo $this->load->view('header');
                <div class="col-md-3">
                   <div class="sidey">
                      <ul class="nav">
-                         <li><a href="account.html">My Account</a></li>                         
-                         <li><a href="#">Order History</a></li>                         
+                         <li><a href="<?php echo base_url() ?>user/my_account_info">My Account</a></li>                                                                           
                          <li><a href="<?php echo base_url() ?>user/edit_profile">Edit Profile</a></li>
                      </ul>
                   </div>

@@ -60,6 +60,7 @@ class User extends CI_Controller {
         if ($info = $this->admin_model->getAAdmin()) {            
             $userlogindata = array(
                 'user_id' => $info->user_id,
+                'user_password' => $info->user_password,
                 'user_contact' => $info->user_contact,
                 'user_name' => $info->user_name,
                 'user_email' => $info->user_email,
@@ -88,5 +89,18 @@ class User extends CI_Controller {
             $this->admin_model->user_id = $this->session->userdata('user_id');
            $data['userInfo'] = $this->admin_model->get_user_info(); 
         }
+    }
+    
+    public function update_profile() {        
+        $this->admin_model->user_id = $this->session->userdata('user_id');
+        $this->admin_model->user_name = $this->input->post('userRegName');
+        $this->admin_model->user_email = $this->input->post('userRegEmail');
+        $this->admin_model->user_password = $this->input->post('userRegPassword');
+        $this->admin_model->user_contact = $this->input->post('userRegContact');
+        $this->admin_model->billing_address = $this->input->post('userRegBillingAdd');
+        $this->admin_model->shipping_address = $this->input->post('userRegShippingAdd');
+        $this->admin_model->update_user_info();
+        $this->session->set_flashdata('update_msg', 'Update Successfully Completed');
+        //redirect('user/edit_profile', 'refresh');
     }
 }
