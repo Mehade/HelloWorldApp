@@ -53,7 +53,7 @@ echo $this->load->view('header');
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="defaultBillAdd" >Billing Address</label>
-                    <textarea class="form-control" rows="3" cols="20" id="defaultBillAdd" readonly ><?php echo $this->session->userdata('billing_address') ?></textarea>
+                    <textarea class="form-control" rows="3" cols="20" id="defaultBillAdd" name="defaultBillAdd" readonly ><?php echo $this->session->userdata('billing_address') ?></textarea>
                 </div>
                 <div class="form-group">
                     <input type="radio" name="radio"  value="differentBillAdd"/> Use Different Address (below) for billing
@@ -64,7 +64,7 @@ echo $this->load->view('header');
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="defaultShipAdd" >Shipping Address</label>                    
-                    <textarea class="form-control" rows="3" cols="20" id="defaultShipAdd" readonly><?php echo $this->session->userdata('shipping_address') ?></textarea>                    
+                    <textarea class="form-control" rows="3" cols="20" id="defaultShipAdd" name="defaultShipAdd" readonly><?php echo $this->session->userdata('shipping_address') ?></textarea>                    
                 </div>
                 <div class="form-group">
                     <input type="radio" name="radio" value="sameAddBill" id="sameadd"/> Same Address of Billing                    

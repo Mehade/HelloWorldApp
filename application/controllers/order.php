@@ -20,21 +20,41 @@ class Order extends CI_Controller {
 
         $order_number = $date . $time . $order_id;
 
-        $this->order_model->order_number = $order_number;
-        $this->order_model->user_id = $this->input->post('user_id');
-        $this->order_model->billing_address = $this->input->post('differentBillAdd');
-        $this->order_model->shipping_address = $this->input->post('sameAddBill');
-        $inserttedId = $this->order_model->order_insert();
 
-        $this->order_item_model->order_id = $inserttedId;
-        $this->order_item_model->order_item_insert();
-        $this->cart->destroy();
+        if ($this->session->userdata('user_id')) {
+            $this->order_model->order_number = $order_number;
+            $this->order_model->user_id = $this->input->post('user_id');
+            $this->order_model->billing_address = $this->input->post('defaultBillAdd');
+            $this->order_model->shipping_address = $this->input->post('defaultShipAdd');
+            $inserttedId = $this->order_model->order_insert();
 
-        $order_msg = array(
-            'order_number' => $order_number
-        );
-        $this->session->set_userdata($order_msg);
-        redirect('order/complete', 'refresh');
+            $this->order_item_model->order_id = $inserttedId;
+            $this->order_item_model->order_item_insert();
+            $this->cart->destroy();
+
+            $order_msg = array(
+                'order_number' => $order_number
+            );
+            $this->session->set_userdata($order_msg);
+            redirect('order/complete', 'refresh');
+        } else {
+
+            $this->order_model->order_number = $order_number;
+            $this->order_model->user_id = $this->input->post('user_id');
+            $this->order_model->billing_address = $this->input->post('differentBillAdd');
+            $this->order_model->shipping_address = $this->input->post('sameAddBill');
+            $inserttedId = $this->order_model->order_insert();
+
+            $this->order_item_model->order_id = $inserttedId;
+            $this->order_item_model->order_item_insert();
+            $this->cart->destroy();
+
+            $order_msg = array(
+                'order_number' => $order_number
+            );
+            $this->session->set_userdata($order_msg);
+            redirect('order/complete', 'refresh');
+        }
     }
 
     public function complete() {
