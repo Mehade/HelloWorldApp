@@ -19,12 +19,7 @@ $this->load->view('header');
 
     <div class="col-md-9 col-md-push-3">
 
-        <!-- Breadcrumb -->
-        <ul class="breadcrumb">
-            <li><a href="index.html">Home</a> <span class="divider"></span></li>
-            <li><a href="items.html">Smartphone</a> <span class="divider"></span></li>
-            <li class="active">Apple</li>
-        </ul>
+        <!-- Breadcrumb -->       
 
         <div class="single-item">
             <div class="row">
